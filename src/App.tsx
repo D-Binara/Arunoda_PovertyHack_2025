@@ -12,6 +12,7 @@ import SunithaStoryPage from './pages/SunithaStoryPage';
 import CourseDetailPage from '@/pages/CourseDetailPage';
 import LandingPage from "@/pages/LandingPage.tsx";
 import AppLayout from "@/AppLayout.tsx";
+import HomePage from "./pages/Index";
 
 const Learn = lazy(() => import("./pages/Learn"));
 const Products = lazy(() => import("./pages/Products"));
@@ -41,7 +42,7 @@ const App = () => (
               <Route path="/login" element={<Login />} />
                 <Route element={<AppLayout />}>
                     <Route path="/" element={<LandingPage />} />
-                    <Route path="/home" element={<Index />} />
+                    <Route path="/home" element={<HomePage />} />
                     <Route path="/learn" element={<Learn />} />
                     <Route path="/learn/:id" element={<CourseDetailPage />} />
                     <Route path="/products" element={<Products />} />
