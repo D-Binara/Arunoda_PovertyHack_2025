@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import SunithaStoryPage from './pages/SunithaStoryPage';
 import CourseDetailPage from '@/pages/CourseDetailPage';
+import LandingPage from "@/pages/LandingPage.tsx";
 
 const Learn = lazy(() => import("./pages/Learn"));
 const Products = lazy(() => import("./pages/Products"));
@@ -37,7 +38,8 @@ const App = () => (
           <Suspense fallback={<div className="flex min-h-screen items-center justify-center">Loading...</div>}>
             <Routes>
               <Route path="/login" element={<Login />} />
-              <Route path="/" element={<Index />} />
+                <Route path="/" element={<LandingPage/>}/>
+              <Route path="/home" element={<Index />} />
             <Route path="/learn" element={<Learn />} />
             <Route path="/products" element={<Products />} />
             <Route path="/products/new" element={<ProductNew />} />
