@@ -11,6 +11,8 @@ import { db } from '@/lib/db';
 import { t } from '@/lib/i18n';
 import type { InvestorRequest } from '@/lib/types';
 import { useAuth } from '@/contexts/AuthContext';
+import Hero from './components/Home/hero';
+import { TopNav } from '@/components/Navbar/TopNav';
 
 export default function HomePage() {
   const { user, isAuthenticated } = useAuth();
@@ -67,6 +69,10 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-background pb-20">
       {/* Hero Section */}
+      <TopNav/>
+      <section>
+<Hero user={"he"}/>
+        </section>
       <section className="relative bg-gradient-to-br from-primary via-primary-glow to-secondary py-16 px-4 text-primary-foreground overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-10 left-10 w-32 h-32 bg-white rounded-full blur-3xl" />
@@ -373,7 +379,7 @@ export default function HomePage() {
                   </CardContent>
                 </Card>
               </div>
-      <BottomNav />
+      {/* <BottomNav /> */}
     </div>
   );
 }
