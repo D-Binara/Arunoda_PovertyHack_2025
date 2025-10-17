@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Play, ChevronRight, Star, TrendingUp, DollarSign, X } from 'lucide-react';
+import { Play, ChevronRight, Star, TrendingUp, DollarSign, X, Bot } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -8,17 +8,23 @@ import { Progress } from '@/components/ui/progress';
 import { BottomNav } from '@/components/BottomNav';
 import { OfflineBadge } from '@/components/OfflineBadge';
 import { db } from '@/lib/db';
-import { t } from '@/lib/i18n';
+import {t, useI18n} from '@/lib/i18n';
 import type { InvestorRequest } from '@/lib/types';
 import { useAuth } from '@/contexts/AuthContext';
 import { TopNav } from '@/components/Navbar/TopNav';
+import StoryCard from './components/home/storycard';
 import ProductPreview from '@/pages/Products';
+
+import LearnGrowSection from './components/home/learnGrowSection';
+
+import BizAdvisorChat from '@/components/BizAdvisorChat';
 
 export default function HomePage() {
   const { user, isAuthenticated } = useAuth();
   const [featuredPitches, setFeaturedPitches] = useState<InvestorRequest[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
+  const [isBizAdvisorOpen, setIsBizAdvisorOpen] = useState(false);
   const navigate = useNavigate();
 
   const storyTitle = "Sunitha's Food Stall Success";
@@ -66,13 +72,25 @@ export default function HomePage() {
     setIsSpeaking(false);
   };
 
+  const { t } = useI18n();
+
   return (
     <div className="min-h-screen bg-background pb-20">
       {/* Hero Section */}
       <section>
         </section>
-      <section className="relative bg-gradient-to-br from-primary via-primary-glow to-secondary py-16 px-4 text-primary-foreground overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
+     <section
+  className="relative overflow-hidden text-white py-16 px-4"
+  style={{
+    backgroundImage:
+      "url('/img/Home/top.png')", // 🔁 Replace with your image
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  }}
+>
+    {/* Black overlay layer */}
+  <div className="absolute inset-0 bg-black/60" />
+   <div className="absolute inset-0 opacity-10">
           <div className="absolute top-10 left-10 w-32 h-32 bg-white rounded-full blur-3xl" />
           <div className="absolute bottom-10 right-10 w-40 h-40 bg-white rounded-full blur-3xl" />
         </div>
@@ -100,30 +118,46 @@ export default function HomePage() {
             <Link to="/products/new">
               <Button size="lg" variant="outline" className="w-full sm:w-auto bg-white/10 border-white/30 text-white hover:bg-white/20">
                 <TrendingUp className="h-5 w-5 mr-2" />
-                Show My Skill
+                {t("showSkill")}
               </Button>
             </Link>
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="w-full sm:w-auto bg-orange-500/90 border-orange-400 text-white hover:bg-orange-600 font-semibold"
+              onClick={() => setIsBizAdvisorOpen(true)}
+            >
+              <Bot className="h-5 w-5 mr-2" />
+              BiZ Advisor
+            </Button>
           </div>
         </div>
       </section>
 
       <div className="max-w-screen-lg mx-auto px-4 space-y-8 py-8">
         {/* Story of the Week */}
-        <Card className="card-elevated">
-          <CardHeader>
+        <h1 className="not-italic font-serif text-transparent text-black text-center  text-4xl md:text-5xl lg:text-6xl">
+Story of the Week
+                </h1>
+        {/* <Card className="card-elevated"> */}
+          {/* <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Star className="h-5 w-5 text-primary" />
               ⭐ Story of the Week
             </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex gap-4">
+          </CardHeader> */}
+
+
+          {/* <CardContent>
+            <div className="flex gap-4" >
+             <div className="absolute left-44 md:left-44 ">
               <img
-                src="https://images.stockcake.com/public/a/d/e/ade4a3ff-194c-4f13-912b-49c45972fec3_large/vibrant-food-stall-stockcake.jpg"
+                src="/img/Home/story.png"
                 alt="Featured story"
-                className="w-24 h-24 rounded-lg object-cover"
+                className="w-44 rounded-lg "
               />
-              <div className="flex-1 space-y-2">
+              </div>
+              <div className="flex-1 mt-5 space-y-2 ml-44">
                 <h3 className="font-semibold">{storyTitle}</h3>
                 <p className="text-sm text-muted-foreground">
                   From Rs. 5,000 to 50+ daily customers
@@ -140,13 +174,68 @@ export default function HomePage() {
                   >
                    View Story
                   </Button>
-
+<div className=' px-3 py-1 '>
+ 
                   <OfflineBadge />
+                  </div>
                 </div>
               </div>
             </div>
-          </CardContent>
-        </Card>
+          </CardContent> */}
+        {/* </Card> */}
+ <div className="flex flex-col md:flex-row items-center md:items-center gap-8 md:gap-12 py-4">
+    {/* LEFT SIDE — Image Container */}
+    <div className="w-full max-w-sm md:max-w-xs flex-shrink-0">
+      <img
+        src="/img/Home/image12w.png"
+        alt="Featured story"
+        className="w-full h-auto rounded-lg object-cover"
+      />
+      {/* Optional: Add absolute positioning styles here if you uncomment the span */}
+    </div>
+
+    {/* RIGHT SIDE — Content */}
+    <div className="flex-1 text-center md:text-left space-y-4">
+      <h3 className="text-3xl sm:text-4xl font-semibold text-neutral-900 leading-snug">
+        {storyTitle}
+      </h3>
+
+      <p className="text-base text-neutral-600 max-w-xl mx-auto md:mx-0">
+        From <span className="font-bold text-[#F57C00]">Rs. 5,000</span> to{" "}
+        <span className="font-bold text-[#F57C00]">50+ daily customers</span> —
+        a journey of passion and persistence that transformed a small dream into
+        a thriving local business.
+      </p>
+
+      <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3 pt-2">
+        {/* Listen Button */}
+        <Button
+          size="sm"
+          variant="default"
+          onClick={speakStory}
+          className="w-full sm:w-auto bg-[#F57C00] hover:bg-[#EF6C00] text-white"
+        >
+          <Play className="h-4 w-4 mr-1" />
+          {isSpeaking ? "Stop" : "Listen"}
+        </Button>
+
+        {/* View Story Button */}
+        <Button
+          size="sm"
+          variant="outline"
+          onClick={() => navigate("/stories/sunitha")}
+          className="w-full sm:w-auto border-[#F57C00]/40 text-[#F57C00] hover:bg-orange-50"
+        >
+          View Story
+        </Button>
+
+        {/* Badge/Other Elements */}
+        <div className="flex items-center gap-2 pt-2 sm:pt-0">
+          <OfflineBadge />
+        </div>
+      </div>
+    </div>
+</div>
 
         {/* Story Modal */}
         {isModalOpen && (
@@ -172,11 +261,14 @@ export default function HomePage() {
             </div>
           </div>
         )}
-
-        {/* Learn & Grow */}
+<LearnGrowSection/>
+        {/* Learn & Grow
           <section>
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-2xl font-bold">🎓 Learn & Grow</h2>
+            <div className="mt-10 flex items-center justify-between mb-4">
+                  <h1 className="not-italic font-serif text-transparent text-black text-center  text-4xl md:text-5xl lg:text-6xl">
+Learn & Grow
+                </h1>
+              <h2 className="text-2xl font-bold">🎓 </h2>
               <Link to="/learn" className="text-sm text-primary hover:underline flex items-center">
                 View All <ChevronRight className="h-4 w-4" />
               </Link>
@@ -218,7 +310,7 @@ export default function HomePage() {
                 </Link>
               ))}
             </div>
-          </section>
+          </section> */}
 
 
         {/* Local Products */}
@@ -361,6 +453,13 @@ export default function HomePage() {
                   </CardContent>
                 </Card>
               </div>
+      
+      {/* BiZ Advisor Chat */}
+      <BizAdvisorChat 
+        isOpen={isBizAdvisorOpen} 
+        onClose={() => setIsBizAdvisorOpen(false)} 
+      />
+      
       {/* <BottomNav /> */}
     </div>
   );

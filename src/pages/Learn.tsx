@@ -24,11 +24,36 @@ export default function LearnPage() {
 
   return (
     <div className="min-h-screen bg-background pb-20">
+      <section
+  className="relative flex items-center justify-center text-center text-white py-20 px-4 overflow-hidden"
+  style={{
+    backgroundImage:
+      "url('/img/Learn/top.png')", // 🔁 Replace with your image
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  }}
+>
+  {/* Dark overlay for readability */}
+  <div className="absolute inset-0 bg-black/60" />
+
+  {/* Content */}
+  <div className="relative z-10 max-w-2xl mx-auto space-y-3">
+    <h1 className="text-4xl md:text-5xl font-extrabold drop-shadow-md">
+       Learn & Grow
+    </h1>
+    <p className="text-lg md:text-xl text-gray-100 opacity-90">
+      Story-driven learning for real-life skills and lifelong growth.
+    </p>
+  </div>
+
+  {/* Optional decorative glow (subtle aesthetic) */}
+  <div className="absolute inset-0 pointer-events-none opacity-20">
+    <div className="absolute top-10 left-10 w-32 h-32 bg-white rounded-full blur-3xl" />
+    <div className="absolute bottom-10 right-10 w-40 h-40 bg-white rounded-full blur-3xl" />
+  </div>
+</section>
       <div className="max-w-screen-lg mx-auto px-4 py-8 space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold mb-2">🎓 Learn & Grow</h1>
-          <p className="text-muted-foreground">Story-driven learning for real-life skills</p>
-        </div>
+       
 
         {/* Search */}
         <div className="relative">
@@ -59,7 +84,7 @@ export default function LearnPage() {
                 <img
                   src={pack.thumbnail}
                   alt={pack.title}
-                  className="w-32 h-32 object-cover cursor-pointer"
+                  className="w-32 h-auto object-cover cursor-pointer"
                   onClick={() => navigate(`/learn/${pack.id}`)} // ✅ Clickable image
                 />
                 <CardContent className="flex-1 p-4 space-y-3">
@@ -129,7 +154,7 @@ export default function LearnPage() {
         )}
       </div>
 
-      <BottomNav />
+     
     </div>
   );
 }
