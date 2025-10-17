@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Edit, LogOut, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -8,9 +9,11 @@ import { mockProfile } from '@/lib/mock-data';
 import { toast } from 'sonner';
 
 export default function ProfilePage() {
+  const [ttsEnabled, setTtsEnabled] = useState(true);
+  const [autoDownload, setAutoDownload] = useState(false);
+
   const handleClearCache = () => {
     if (confirm('Clear all offline data? This cannot be undone.')) {
-      // In production: clear IndexedDB
       toast.success('Cache cleared successfully');
     }
   };
@@ -45,11 +48,9 @@ export default function ProfilePage() {
               </Button>
             </div>
 
-            {mockProfile.bio && (
-              <p className="text-sm">{mockProfile.bio}</p>
-            )}
+            {mockProfile.bio && <p className="text-sm">{mockProfile.bio}</p>}
 
-            {mockProfile.skills && mockProfile.skills.length > 0 && (
+            {mockProfile.skills?.length > 0 && (
               <div className="space-y-2">
                 <h3 className="font-semibold text-sm">Skills</h3>
                 <div className="flex flex-wrap gap-2">
@@ -100,8 +101,12 @@ export default function ProfilePage() {
                   Auto-play audio for stories
                 </p>
               </div>
-              <Button variant="outline" size="sm">
-                On
+              <Button
+                variant={ttsEnabled ? "default" : "outline"}
+                size="sm"
+                onClick={() => setTtsEnabled(!ttsEnabled)}
+              >
+                {ttsEnabled ? "On" : "Off"}
               </Button>
             </div>
 
@@ -112,8 +117,12 @@ export default function ProfilePage() {
                   Download content packs on WiFi
                 </p>
               </div>
-              <Button variant="outline" size="sm">
-                Off
+              <Button
+                variant={autoDownload ? "default" : "outline"}
+                size="sm"
+                onClick={() => setAutoDownload(!autoDownload)}
+              >
+                {autoDownload ? "On" : "Off"}
               </Button>
             </div>
           </CardContent>
