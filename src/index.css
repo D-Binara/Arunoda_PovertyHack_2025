@@ -1,0 +1,193 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Warm, accessible color system for rural users */
+    --background: 32 40% 97%;
+    --foreground: 24 20% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 24 20% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 24 20% 15%;
+
+    /* Primary: Warm amber for empowerment & energy */
+    --primary: 32 95% 50%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 32 100% 92%;
+    --primary-glow: 32 100% 65%;
+
+    /* Secondary: Vibrant green for growth & success */
+    --secondary: 142 76% 36%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-light: 142 65% 92%;
+
+    /* Accent: Trust blue for info/actions */
+    --accent: 217 91% 60%;
+    --accent-foreground: 0 0% 100%;
+    --accent-light: 217 85% 94%;
+
+    --muted: 32 30% 92%;
+    --muted-foreground: 24 15% 45%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 32 25% 88%;
+    --input: 32 25% 88%;
+    --ring: 32 95% 50%;
+
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(32 95% 50%), hsl(32 100% 65%));
+    --gradient-success: linear-gradient(135deg, hsl(142 76% 36%), hsl(142 80% 48%));
+    --gradient-learning: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 85% 70%));
+    
+    /* Shadows */
+    --shadow-card: 0 2px 8px hsl(24 20% 15% / 0.08);
+    --shadow-button: 0 4px 12px hsl(32 95% 50% / 0.3);
+    --shadow-float: 0 8px 24px hsl(24 20% 15% / 0.12);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .dark {
+    --background: 24 25% 12%;
+    --foreground: 32 20% 95%;
+
+    --card: 24 20% 16%;
+    --card-foreground: 32 20% 95%;
+
+    --popover: 24 20% 16%;
+    --popover-foreground: 32 20% 95%;
+
+    --primary: 32 95% 55%;
+    --primary-foreground: 24 25% 12%;
+    --primary-light: 32 50% 25%;
+    --primary-glow: 32 90% 60%;
+
+    --secondary: 142 70% 42%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-light: 142 40% 22%;
+
+    --accent: 217 85% 65%;
+    --accent-foreground: 0 0% 100%;
+    --accent-light: 217 45% 25%;
+
+    --muted: 24 20% 20%;
+    --muted-foreground: 32 15% 60%;
+
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 24 20% 22%;
+    --input: 24 20% 22%;
+    --ring: 32 95% 55%;
+
+    --shadow-card: 0 2px 8px hsl(0 0% 0% / 0.3);
+    --shadow-button: 0 4px 12px hsl(32 95% 55% / 0.4);
+    --shadow-float: 0 8px 24px hsl(0 0% 0% / 0.4);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Large touch targets for accessibility */
+  button, a, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+@layer components {
+  /* Hero button variant */
+  .btn-hero {
+    @apply bg-gradient-to-r from-primary to-primary-glow text-primary-foreground font-semibold px-8 py-4 rounded-xl shadow-[var(--shadow-button)] hover:scale-105 active:scale-95 transition-transform;
+  }
+
+  /* Success button */
+  .btn-success {
+    @apply bg-secondary text-secondary-foreground font-semibold rounded-lg shadow-md hover:bg-secondary/90 transition-colors;
+  }
+
+  /* Card with shadow */
+  .card-elevated {
+    @apply bg-card rounded-xl shadow-[var(--shadow-card)] border border-border hover:shadow-[var(--shadow-float)] transition-shadow;
+  }
+
+  /* Offline badge */
+  .badge-offline {
+    @apply inline-flex items-center gap-1 px-2 py-1 bg-accent-light text-accent-foreground text-xs font-medium rounded-full;
+  }
+
+  /* Progress bar */
+  .progress-bar {
+    @apply h-2 bg-muted rounded-full overflow-hidden;
+  }
+
+  .progress-fill {
+    @apply h-full bg-gradient-to-r from-secondary to-secondary/80 rounded-full transition-all duration-500;
+  }
+
+  /* Audio player */
+  .audio-player {
+    @apply flex items-center gap-3 p-4 bg-muted/50 rounded-lg;
+  }
+
+  /* Touch-friendly spacing */
+  .touch-target {
+    @apply p-3 min-h-[44px] min-w-[44px] flex items-center justify-center;
+  }
+
+  /* Story choice button */
+  .story-choice {
+    @apply w-full p-4 text-left bg-accent-light border-2 border-transparent hover:border-accent hover:bg-accent/10 rounded-xl transition-all active:scale-95 font-medium;
+  }
+
+  /* Animations */
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-pulse-gentle {
+    animation: pulseGentle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulseGentle {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+}
