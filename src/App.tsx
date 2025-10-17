@@ -12,11 +12,14 @@ import SunithaStoryPage from './pages/SunithaStoryPage';
 import CourseDetailPage from '@/pages/CourseDetailPage';
 import LandingPage from "@/pages/LandingPage.tsx";
 import AppLayout from "@/AppLayout.tsx";
+import HomePage from "./pages/Index";
 
 const Learn = lazy(() => import("./pages/Learn"));
 const Products = lazy(() => import("./pages/Products"));
 const ProductNew = lazy(() => import("./pages/ProductNew"));
 const Jobs = lazy(() => import("./pages/Jobs"));
+const JobNew = lazy(() => import("./pages/JobNew"));
+const JobDetail = lazy(() => import("./pages/JobDetail"));
 const Stories = lazy(() => import("./pages/Stories"));
 const StoriesNew = lazy(() => import("./pages/StoriesNew"));
 const Messages = lazy(() => import("./pages/Messages"));
@@ -41,12 +44,14 @@ const App = () => (
               <Route path="/login" element={<Login />} />
                 <Route element={<AppLayout />}>
                     <Route path="/" element={<LandingPage />} />
-                    <Route path="/home" element={<Index />} />
+                    <Route path="/home" element={<HomePage />} />
                     <Route path="/learn" element={<Learn />} />
                     <Route path="/learn/:id" element={<CourseDetailPage />} />
                     <Route path="/products" element={<Products />} />
                     <Route path="/products/new" element={<ProductNew />} />
                     <Route path="/jobs" element={<Jobs />} />
+                    <Route path="/jobs/new" element={<JobNew />} />
+                    <Route path="/jobs/:id" element={<JobDetail />} />
                     <Route path="/stories" element={<Stories />} />
                     <Route path="/stories/new" element={<StoriesNew />} />
                     <Route path="/stories/sunitha" element={<SunithaStoryPage />} />
