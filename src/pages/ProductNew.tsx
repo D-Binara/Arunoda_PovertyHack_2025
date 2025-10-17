@@ -8,13 +8,22 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { AudioRecorder } from '@/components/AudioRecorder';
-import { db, addToOutbox } from '@/lib/db';
+import { productsAPI } from '@/lib/api';
 import { toast } from 'sonner';
+
+const DISTRICTS = [
+  'Colombo', 'Gampaha', 'Kalutara', 'Kandy', 'Matale', 'Nuwara Eliya',
+  'Galle', 'Matara', 'Hambantota', 'Jaffna', 'Kilinochchi', 'Mannar',
+  'Vavuniya', 'Mullaitivu', 'Batticaloa', 'Ampara', 'Trincomalee',
+  'Kurunegala', 'Puttalam', 'Anuradhapura', 'Polonnaruwa', 'Badulla',
+  'Moneragala', 'Ratnapura', 'Kegalle'
+];
 
 export default function ProductNewPage() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
+  const [priceType, setPriceType] = useState<'fixed' | 'negotiable'>('fixed');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -23,31 +32,25 @@ export default function ProductNewPage() {
     try {
       const formData = new FormData(e.currentTarget);
       
-      const product = {
-        id: `product_${Date.now()}`,
-        userId: 'user_1',
+      const productData = {
         title: formData.get('title') as string,
         description: formData.get('description') as string,
-        price: formData.get('price') === 'negotiable' || !formData.get('price')
-          ? 'negotiable' as const
+        price: priceType === 'negotiable' 
+          ? 'negotiable' 
           : Number(formData.get('price')),
-        category: formData.get('category') as 'food' | 'crafts' | 'services',
+        category: formData.get('category') as string,
         village: formData.get('village') as string,
         district: formData.get('district') as string,
-        images: [], // Would handle file upload in production
-        audioDescription: audioBlob ? URL.createObjectURL(audioBlob) : undefined,
-        status: 'pending' as const,
-        createdAt: new Date(),
-        syncStatus: 'pending' as const,
+        images: ['https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400'], // Default image
+        status: 'active',
       };
 
-      await db.products.add(product);
-      await addToOutbox('product', product);
+      await productsAPI.create(productData);
 
-      toast.success('Product posted! Will sync when online.');
+      toast.success('Product posted successfully! 🎉');
       navigate('/products');
-    } catch (error) {
-      toast.error('Failed to post product');
+    } catch (error: any) {
+      toast.error(error.response?.data?.message || 'Failed to post product');
       console.error(error);
     } finally {
       setLoading(false);
@@ -112,15 +115,31 @@ export default function ProductNewPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="price">Price (Rs.)</Label>
+                  <Label>Price Type *</Label>
+                  <Select value={priceType} onValueChange={(v) => setPriceType(v as any)}>
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="fixed">Fixed Price</SelectItem>
+                      <SelectItem value="negotiable">Negotiable</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+
+              {priceType === 'fixed' && (
+                <div className="space-y-2">
+                  <Label htmlFor="price">Price (Rs.) *</Label>
                   <Input 
                     id="price" 
                     name="price" 
                     type="number" 
-                    placeholder="Or 'negotiable'"
+                    placeholder="Enter price"
+                    required
                   />
                 </div>
-              </div>
+              )}
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
@@ -135,12 +154,18 @@ export default function ProductNewPage() {
 
                 <div className="space-y-2">
                   <Label htmlFor="district">District *</Label>
-                  <Input 
-                    id="district" 
-                    name="district" 
-                    placeholder="Your district"
-                    required 
-                  />
+                  <Select name="district" required>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select district" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {DISTRICTS.map((district) => (
+                        <SelectItem key={district} value={district}>
+                          {district}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
 
