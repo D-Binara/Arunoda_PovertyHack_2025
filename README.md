@@ -140,5 +140,3 @@ Offline-first design ensures participation even with limited internet access.
 
 ---
 
-## 🧩 Folder Structure (App Router)
-
