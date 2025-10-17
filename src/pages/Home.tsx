@@ -11,7 +11,6 @@ import { db } from '@/lib/db';
 import { t } from '@/lib/i18n';
 import type { InvestorRequest } from '@/lib/types';
 import { useAuth } from '@/contexts/AuthContext';
-import Hero from './components/Home/hero';
 import { TopNav } from '@/components/Navbar/TopNav';
 import ProductPreview from '@/pages/Products';
 
@@ -72,7 +71,6 @@ export default function HomePage() {
       {/* Hero Section */}
       <TopNav/>
       <section>
-<Hero user={"he"}/>
         </section>
       <section className="relative bg-gradient-to-br from-primary via-primary-glow to-secondary py-16 px-4 text-primary-foreground overflow-hidden">
         <div className="absolute inset-0 opacity-10">

@@ -10,9 +10,8 @@ import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import SunithaStoryPage from './pages/SunithaStoryPage';
 import CourseDetailPage from '@/pages/CourseDetailPage';
-import HomePage from '@/pages/Home';
-import ProductsPage from '@/pages/Products';
-import ProductDetailPage from '@/pages/ProductDetailPage';
+import LandingPage from "@/pages/LandingPage.tsx";
+import AppLayout from "@/AppLayout.tsx";
 
 const Learn = lazy(() => import("./pages/Learn"));
 const Products = lazy(() => import("./pages/Products"));
@@ -25,7 +24,8 @@ const Profile = lazy(() => import("./pages/Profile"));
 const Progress = lazy(() => import("./pages/Progress"));
 const InvestorConnect = lazy(() => import("./pages/InvestorConnect"));
 const InvestorRequestNew = lazy(() => import("./pages/InvestorRequestNew"));
-
+const ProductsPage = lazy(() => import('@/pages/Products'));
+const ProductDetailPage = lazy(() => import('@/pages/ProductDetailPage'));
 
 
 const queryClient = new QueryClient();
@@ -40,25 +40,26 @@ const App = () => (
           <Suspense fallback={<div className="flex min-h-screen items-center justify-center">Loading...</div>}>
             <Routes>
               <Route path="/login" element={<Login />} />
-              <Route path="/" element={<Index />} />
-            <Route path="/learn" element={<Learn />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/products/new" element={<ProductNew />} />
-            <Route path="/jobs" element={<Jobs />} />
-            <Route path="/stories" element={<Stories />} />
-            <Route path="/stories/new" element={<StoriesNew />} />
-            <Route path="/messages" element={<Messages />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/progress" element={<Progress />} />
-            <Route path="/stories/sunitha" element={<SunithaStoryPage />} />
-            <Route path="/learn/:id" element={<CourseDetailPage />} />
-            <Route path="/investor-connect" element={<InvestorConnect />} />
-            <Route path="/investor-request/new" element={<InvestorRequestNew />} />
-            <Route path="/" element={<HomePage />} />
-            <Route path="/products" element={<ProductsPage />} />
-            <Route path="/products/:id" element={<ProductDetailPage />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
+                <Route element={<AppLayout />}>
+                    <Route path="/" element={<LandingPage />} />
+                    <Route path="/home" element={<Index />} />
+                    <Route path="/learn" element={<Learn />} />
+                    <Route path="/learn/:id" element={<CourseDetailPage />} />
+                    <Route path="/products" element={<Products />} />
+                    <Route path="/products/new" element={<ProductNew />} />
+                    <Route path="/jobs" element={<Jobs />} />
+                    <Route path="/stories" element={<Stories />} />
+                    <Route path="/stories/new" element={<StoriesNew />} />
+                    <Route path="/stories/sunitha" element={<SunithaStoryPage />} />
+                    <Route path="/messages" element={<Messages />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/progress" element={<Progress />} />
+                    <Route path="/investor-connect" element={<InvestorConnect />} />
+                    <Route path="/investor-request/new" element={<InvestorRequestNew />} />
+                    <Route path="*" element={<NotFound />} />
+                    <Route path="/products" element={<ProductsPage />} />
+                    <Route path="/products/:id" element={<ProductDetailPage />} />
+                </Route>
           </Routes>
         </Suspense>
       </BrowserRouter>
