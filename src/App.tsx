@@ -29,6 +29,8 @@ const InvestorConnect = lazy(() => import("./pages/InvestorConnect"));
 const InvestorRequestNew = lazy(() => import("./pages/InvestorRequestNew"));
 const Entrepreneurs = lazy(() => import("./pages/Entrepreneurs"));
 const EntrepreneurProfile = lazy(() => import("./pages/EntrepreneurProfile"));
+const ProductsPage = lazy(() => import('@/pages/Products'));
+const ProductDetailPage = lazy(() => import('@/pages/ProductDetailPage'));
 
 const queryClient = new QueryClient();
 
@@ -63,6 +65,8 @@ const App = () => (
                     <Route path="/entrepreneurs" element={<Entrepreneurs />} />
                     <Route path="/entrepreneurs/:id" element={<EntrepreneurProfile />} />
                     <Route path="*" element={<NotFound />} />
+                    <Route path="/products" element={<ProductsPage />} />
+                    <Route path="/products/:id" element={<ProductDetailPage />} />
                 </Route>
           </Routes>
         </Suspense>
