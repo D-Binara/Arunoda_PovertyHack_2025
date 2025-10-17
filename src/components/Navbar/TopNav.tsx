@@ -24,7 +24,7 @@ const navItems = [
   { href: "/home", icon: Home, label: "Home" },
   { href: "/learn", icon: BookOpen, label: "Learn" },
   { href: "/jobs", icon: Briefcase, label: "Jobs" },
-  { href: "/entrepreneurs", icon: Users, label: "Entrepreneurs" },
+  { href: "/entrepreneurs", icon: Users, label: "Investors" },
   { href: "/messages", icon: MessageCircle, label: "Messages" },
 ];
 
