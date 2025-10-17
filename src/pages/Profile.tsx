@@ -8,6 +8,7 @@ import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { toast } from 'sonner';
 import { useAuth } from '@/contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import {mockProfile} from "@/lib/mock-data.ts";
 
 export default function ProfilePage() {
   const { user, logout } = useAuth();
@@ -80,7 +81,8 @@ export default function ProfilePage() {
                     <Badge key={i} variant="secondary">{skill}</Badge>
                   ))}
                 </div>
-              </div>
+                </div>)
+            }</div>)
             </div>
           </CardContent>
         </Card>
