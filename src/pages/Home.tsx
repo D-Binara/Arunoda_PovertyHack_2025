@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Play, ChevronRight, Star, TrendingUp, DollarSign, X, Bot } from 'lucide-react';
+
+import { useState, useEffect } from 'react';
+import { Play, ChevronRight, Star, TrendingUp, DollarSign, X, Bot, MapPin } from 'lucide-react';
+
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -18,9 +20,13 @@ import ProductPreview from '@/pages/Products';
 import LearnGrowSection from './components/home/learnGrowSection';
 
 import BizAdvisorChat from '@/components/BizAdvisorChat';
+
+import JobsPreviewSection from './components/home/JobsPreviewSection';
+
 import ProductList from "@/pages/components/home/productList.tsx";
 import ProgressCard from "@/pages/components/home/ProgressCard.tsx";
 import DailyTipCard from "@/pages/components/home/DailyTipCard.tsx";
+
 
 export default function HomePage() {
   const { user, isAuthenticated } = useAuth();
@@ -379,19 +385,9 @@ Learn & Grow
                     </div>
                   </section>
                 )}
-        
-                {/* Jobs */}
-                <section>
-                  <div className="flex items-center justify-between mb-4">
-                    <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl text-neutral-900 dark:text-white">
-                      Jobs & Collaboration
-                    </h1>
 
-                    <Link to="/jobs" className="text-sm text-primary hover:underline flex items-center">
-                      View All <ChevronRight className="h-4 w-4"/>
-                    </Link>
-                  </div>
-
+        <JobsPreviewSection/>
+            
                   <div className="space-y-3">
                     {[
                       {title: 'Farm Helper', pay: 'Rs. 1,500/day', location: 'Kurunegala' },
