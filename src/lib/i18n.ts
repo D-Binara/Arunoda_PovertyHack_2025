@@ -48,7 +48,17 @@ const translations = {
     // Stories
     inspireWall: 'Inspire Wall',
     shareStory: 'Share Your Story',
-    
+    story:'\n' +
+        'The air in Arun’s small workshop is thick with the sweet, woody scent of Kaddur and Kadamba. For years, the vibrant art of traditional wooden mask carving felt like a sunset art, fading with the older generation. Arun, however, saw not an ending, but a challenge. He inherited not wealth, but a singular, essential tool: his grandfather\'s chisel, smoothed and worn by decades of tireless work.\n' +
+        '\n' +
+        'His journey began with just a few rupees, enough to buy a small block of wood. The first masks he carved were clumsy, but they held a promise—the ancient, soulful expressions passed down through his family. He spent every day refining the tilt of a demon’s eye, the serenity of a deity\'s smile, and the subtle, lifelike textures that define this intricate craft.\n' +
+        '\n' +
+        'The turning point wasn\'t a sudden burst of sales, but recognition from a local cultural society. They saw the purity and persistence in his work. He started teaching, sharing his knowledge, and suddenly, his craft was alive again. His customer base grew beyond local patrons to include international collectors and museums who cherished the authenticity of his handiwork.\n' +
+        '\n' +
+        'From a solitary artist struggling to keep the lights on, Arun is now the master of a thriving cooperative, employing three apprentices. His income has soared, but his true measure of success lies in the revival of the tradition. He proved that even in a digital world, there is an unquenchable thirst for things made by human hands, carrying a legacy carved in wood.\n' +
+        '\n' +
+        'Today, Arun’s masks adorn galleries, and his small shop has become a center for cultural preservation. He’s not just carving wood; he’s carving the future of an ancient art, one patient, perfect stroke at a time. His legacy is proof that passion, linked to deep cultural roots, can always find a global audience.',
+
     // Progress
     myJourney: 'My Learning Journey',
     shareProgress: 'Share Progress',
@@ -164,7 +174,17 @@ const translations = {
     
     inspireWall: 'ප්‍රේරණා බිත්තිය',
     shareStory: 'ඔබේ කතාව බෙදා ගන්න',
-    
+    story:'අරුන්ගේ කුඩා වැඩමුළුවේ වාතය කද්දූර් සහ කඩම්බා වල මිහිරි, දැවමය සුවඳින් ඝනයි. වසර ගණනාවක් තිස්සේ, සාම්ප්‍රදායික ලී වෙස් මුහුණු කැටයම් කිරීමේ විචිත්‍රවත් කලාව හිරු බැස යන කලාවක් මෙන් දැනුණු අතර, පැරණි පරම්පරාව සමඟ මැකී ගියේය. කෙසේ වෙතත්, අරුන් දුටුවේ අවසානයක් නොව අභියෝගයකි. ඔහුට උරුම වූයේ ධනය නොව, අද්විතීය, අත්‍යවශ්‍ය මෙවලමකි: ඔහුගේ සීයාගේ චිසල්, දශක ගණනාවක් තිස්සේ වෙහෙස නොබලා වැඩ කිරීමෙන් සුමට කර පැළඳ සිටියේය.\n' +
+        '\n' +
+        'ඔහුගේ ගමන ආරම්භ වූයේ රුපියල් කිහිපයකින් පමණි, කුඩා ලී කුට්ටියක් මිලදී ගැනීමට ප්‍රමාණවත්. ඔහු කැටයම් කළ පළමු වෙස් මුහුණු අවුල් සහගත විය, නමුත් ඒවාට පොරොන්දුවක් තිබුණි - පුරාණ, ආත්මීය ප්‍රකාශන. යක්ෂයෙකුගේ ඇසේ ඇලවීම, දේවතාවෙකුගේ සිනහවේ සන්සුන් භාවය සහ මෙම සංකීර්ණ ශිල්පය නිර්වචනය කරන සියුම්, ජීවමාන වයනය පිරිපහදු කිරීමට ඔහු සෑම දිනකම ගත කළේය.\n' +
+        '\n' +
+        'හැරවුම් ලක්ෂ්‍යය වූයේ හදිසි විකුණුම් පිපිරීමක් නොව, දේශීය සංස්කෘතික සමාජයකින් පිළිගැනීමයි. ඔහුගේ කාර්යයේ පාරිශුද්ධභාවය සහ නොපසුබට උත්සාහය ඔවුන් දුටුවේය. ඔහු ඉගැන්වීමට, ඔහුගේ දැනුම බෙදා ගැනීමට පටන් ගත් අතර, හදිසියේම, ඔහුගේ ශිල්පය නැවතත් ජීවමාන විය. ඔහුගේ පාරිභෝගික පදනම දේශීය අනුග්‍රාහකයින් ඉක්මවා වර්ධනය වූ අතර, ඔහුගේ අත්කම් වල සත්‍යතාව අගය කළ ජාත්‍යන්තර එකතුකරන්නන් සහ කෞතුකාගාර ද ඊට ඇතුළත් විය.\n' +
+        '\n' +
+        'ආලෝකය දැල්වීමට අරගල කරන හුදකලා කලාකරුවෙකුගෙන්, අරුන් දැන් ආධුනිකයින් තිදෙනෙකු සේවයේ යොදවන සමෘද්ධිමත් සමුපකාරයක ප්‍රධානියා වේ. ඔහුගේ ආදායම ඉහළ ගොස් ඇත, නමුත් ඔහුගේ සැබෑ සාර්ථකත්වයේ මිනුම සම්ප්‍රදායේ පුනර්ජීවනය තුළ පවතී. ඩිජිටල් ලෝකයක පවා, ලීයෙන් කැටයම් කළ උරුමයක් රැගෙන මිනිස් අත්වලින් සාදන ලද දේවල් සඳහා නොසන්සිඳෙන පිපාසයක් ඇති බව ඔහු ඔප්පු කළේය.\n' +
+        '\n' +
+        'අද, අරුන්ගේ වෙස් මුහුණු ගැලරි අලංකාර කරන අතර, ඔහුගේ කුඩා සාප්පුව සංස්කෘතික සංරක්ෂණය සඳහා මධ්‍යස්ථානයක් බවට පත්ව ඇත. ඔහු ලී කැටයම් කිරීම පමණක් නොවේ; ඔහු පුරාණ කලාවක අනාගතය කැටයම් කරයි, එක් රෝගියෙකු, එකවර පරිපූර්ණ පහරක්. ගැඹුරු සංස්කෘතික මූලයන් සමඟ සම්බන්ධ වූ ආශාවට සැමවිටම ගෝලීය ප්‍රේක්ෂක පිරිසක් සොයා ගත හැකි බවට ඔහුගේ උරුමය සාක්ෂියකි.',
+
+
     myJourney: 'මගේ ඉගෙනුම් ගමන',
     shareProgress: 'ප්‍රගතිය බෙදා ගන්න',
     

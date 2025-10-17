@@ -8,7 +8,7 @@ import { Progress } from '@/components/ui/progress';
 import { BottomNav } from '@/components/BottomNav';
 import { OfflineBadge } from '@/components/OfflineBadge';
 import { db } from '@/lib/db';
-import {t, useI18n} from '@/lib/i18n';
+import { useI18n} from '@/lib/i18n';
 import type { InvestorRequest } from '@/lib/types';
 import { useAuth } from '@/contexts/AuthContext';
 import { TopNav } from '@/components/Navbar/TopNav';
