@@ -8,6 +8,7 @@ import {
   Briefcase,
   MessageCircle,
   User,
+  Users,
   Menu,
   X,
   LogIn,
@@ -17,9 +18,10 @@ import {
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { href: "/", icon: Home, label: "Home" },
+  { href: "/home", icon: Home, label: "Home" },
   { href: "/learn", icon: BookOpen, label: "Learn" },
   { href: "/jobs", icon: Briefcase, label: "Jobs" },
+  { href: "/entrepreneurs", icon: Users, label: "Entrepreneurs" },
   { href: "/messages", icon: MessageCircle, label: "Messages" },
 ];
 

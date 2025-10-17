@@ -69,7 +69,6 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-background pb-20">
       {/* Hero Section */}
-      <TopNav/>
       <section>
         </section>
       <section className="relative bg-gradient-to-br from-primary via-primary-glow to-secondary py-16 px-4 text-primary-foreground overflow-hidden">

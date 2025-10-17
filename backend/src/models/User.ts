@@ -30,7 +30,7 @@ const UserSchema = new Schema<IUser>(
     email: { type: String, required: true, unique: true, lowercase: true },
     password: { type: String, required: true, select: false },
     phone: { type: String, trim: true },
-    role: { type: String, default: 'user', enum: ['user', 'admin', 'moderator'] },
+    role: { type: String, default: 'user', enum: ['user', 'admin', 'moderator', 'entrepreneur'] },
     village: { type: String, required: true },
     district: { type: String, required: true },
     bio: { type: String, maxlength: 500 },
@@ -64,5 +64,7 @@ UserSchema.methods.comparePassword = async function (
 // Indexes
 UserSchema.index({ email: 1 });
 UserSchema.index({ district: 1, village: 1 });
+UserSchema.index({ role: 1, isActive: 1, district: 1 });
+UserSchema.index({ name: 'text', bio: 'text', village: 'text', district: 'text', skills: 'text' });
 
 export default mongoose.model<IUser>('User', UserSchema);
