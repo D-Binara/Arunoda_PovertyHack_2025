@@ -170,33 +170,52 @@ export default function HomePage() {
         )}
 
         {/* Learn & Grow */}
-        <section>
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-2xl font-bold">🎓 Learn & Grow</h2>
-            <Link to="/learn" className="text-sm text-primary hover:underline flex items-center">
-              View All <ChevronRight className="h-4 w-4" />
-            </Link>
-          </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {[
-              { title: 'Smart Saving', progress: 60, image: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=400&h=300&fit=crop', downloaded: true },
-              { title: 'Start Business', progress: 30, image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=400&h=300&fit=crop', downloaded: false },
-            ].map((pack, i) => (
-              <Card key={i} className="card-elevated overflow-hidden">
-                <img src={pack.image} alt={pack.title} className="w-full h-32 object-cover" />
-                <CardContent className="p-4 space-y-2">
-                  <h3 className="font-semibold">{pack.title}</h3>
-                  <Progress value={pack.progress} className="h-2" />
-                  <div className="flex justify-between items-center text-xs">
-                    <span className="text-muted-foreground">{pack.progress}% Complete</span>
-                    {pack.downloaded && <OfflineBadge />}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
+          <section>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-2xl font-bold">🎓 Learn & Grow</h2>
+              <Link to="/learn" className="text-sm text-primary hover:underline flex items-center">
+                View All <ChevronRight className="h-4 w-4" />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {[
+                {
+                  id: 'pack_savings',
+                  title: 'Smart Saving',
+                  progress: 60,
+                  image: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=400&h=300&fit=crop',
+                  downloaded: true,
+                  description: 'Learn practical ways to manage your finances, save more, and build long-term stability.',
+                },
+                {
+                  id: 'pack_business',
+                  title: 'Start Business',
+                  progress: 30,
+                  image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=400&h=300&fit=crop',
+                  downloaded: false,
+                  description: 'Get step-by-step guidance to launch your small business successfully and sustainably.',
+                },
+              ].map((pack) => (
+                <Link
+                  key={pack.id}
+                  to={`/learn/${pack.id}`}
+                  className="card-elevated overflow-hidden block hover:shadow-lg transition-shadow duration-200"
+                >
+                  <img src={pack.image} alt={pack.title} className="w-full h-32 object-cover" />
+                  <CardContent className="p-4 space-y-2">
+                    <h3 className="font-semibold text-lg hover:text-primary">{pack.title}</h3>
+                    <Progress value={pack.progress} className="h-2" />
+                    <div className="flex justify-between items-center text-xs">
+                      <span className="text-muted-foreground">{pack.progress}% Complete</span>
+                      {pack.downloaded && <OfflineBadge />}
+                    </div>
+                  </CardContent>
+                </Link>
+              ))}
+            </div>
+          </section>
+
 
         {/* Local Products */}
                 <section>

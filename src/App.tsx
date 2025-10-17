@@ -8,6 +8,8 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
+import SunithaStoryPage from './pages/SunithaStoryPage';
+import CourseDetailPage from '@/pages/CourseDetailPage';
 
 const Learn = lazy(() => import("./pages/Learn"));
 const Products = lazy(() => import("./pages/Products"));
@@ -20,7 +22,7 @@ const Profile = lazy(() => import("./pages/Profile"));
 const Progress = lazy(() => import("./pages/Progress"));
 const InvestorConnect = lazy(() => import("./pages/InvestorConnect"));
 const InvestorRequestNew = lazy(() => import("./pages/InvestorRequestNew"));
-import SunithaStoryPage from './pages/SunithaStoryPage';
+
 
 
 const queryClient = new QueryClient();
@@ -46,6 +48,7 @@ const App = () => (
             <Route path="/profile" element={<Profile />} />
             <Route path="/progress" element={<Progress />} />
             <Route path="/stories/sunitha" element={<SunithaStoryPage />} />
+            <Route path="/learn/:id" element={<CourseDetailPage />} />
             <Route path="/investor-connect" element={<InvestorConnect />} />
             <Route path="/investor-request/new" element={<InvestorRequestNew />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
