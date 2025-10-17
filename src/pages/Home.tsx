@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { Play, ChevronRight, Star, TrendingUp, DollarSign, X } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Play, ChevronRight, Star, TrendingUp, DollarSign } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -12,12 +10,10 @@ import { OfflineBadge } from '@/components/OfflineBadge';
 import { db } from '@/lib/db';
 import { t } from '@/lib/i18n';
 import type { InvestorRequest } from '@/lib/types';
-import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 
 export default function HomePage() {
   const { user, isAuthenticated } = useAuth();
-  const navigate = useNavigate();
   const [featuredPitches, setFeaturedPitches] = useState<InvestorRequest[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
