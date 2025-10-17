@@ -131,4 +131,10 @@ export const getAuthToken = () => {
   return localStorage.getItem('token');
 };
 
+export const entrepreneursAPI = {
+  // Supports filters via params: q, district, village, skill, skills, onlyActive, page, limit, sort
+  getAll: (params?: any) => api.get('/entrepreneurs', { params }),
+  getById: (id: string) => api.get(`/entrepreneurs/${id}`),
+};
+
 export default api;

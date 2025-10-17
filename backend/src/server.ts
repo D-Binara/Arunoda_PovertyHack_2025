@@ -19,6 +19,7 @@ import communityStoryRoutes from './routes/communityStory.routes';
 import storyRoutes from './routes/story.routes';
 import messageRoutes from './routes/message.routes';
 import progressRoutes from './routes/progress.routes';
+import entrepreneursRoutes from "./routes/entrepreneurs.routes";
 
 // Initialize express app
 const app: Application = express();
@@ -63,6 +64,7 @@ app.use('/api/community-stories', communityStoryRoutes);
 app.use('/api/stories', storyRoutes);
 app.use('/api/messages', messageRoutes);
 app.use('/api/progress', progressRoutes);
+app.use('/api/entrepreneurs', entrepreneursRoutes);
 
 // Welcome route
 app.get('/', (_req, res) => {
