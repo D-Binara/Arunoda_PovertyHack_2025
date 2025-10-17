@@ -20,6 +20,8 @@ const Profile = lazy(() => import("./pages/Profile"));
 const Progress = lazy(() => import("./pages/Progress"));
 const InvestorConnect = lazy(() => import("./pages/InvestorConnect"));
 const InvestorRequestNew = lazy(() => import("./pages/InvestorRequestNew"));
+import SunithaStoryPage from './pages/SunithaStoryPage';
+
 
 const queryClient = new QueryClient();
 
@@ -43,6 +45,7 @@ const App = () => (
             <Route path="/messages" element={<Messages />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/progress" element={<Progress />} />
+            <Route path="/stories/sunitha" element={<SunithaStoryPage />} />
             <Route path="/investor-connect" element={<InvestorConnect />} />
             <Route path="/investor-request/new" element={<InvestorRequestNew />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

@@ -8,6 +8,7 @@ import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { toast } from 'sonner';
 import { useAuth } from '@/contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import {mockProfile} from "@/lib/mock-data.ts";
 
 export default function ProfilePage() {
   const { user, logout } = useAuth();
@@ -80,7 +81,8 @@ export default function ProfilePage() {
                     <Badge key={i} variant="secondary">{skill}</Badge>
                   ))}
                 </div>
-              </div>
+                </div>)
+            }</div>)
             </div>
           </CardContent>
         </Card>
@@ -177,11 +179,10 @@ export default function ProfilePage() {
 
         {/* Version Info */}
         <div className="text-center text-xs text-muted-foreground">
-          <p>EmpowerLearn Stories v1.0.0</p>
-          <p>Made with ❤️ for rural communities</p>
+          <p>Arunoda v1.0.0</p>
+          <p>Made with ❤️ for Rural Communities</p>
         </div>
       </div>
-
       <BottomNav />
     </div>
   );
