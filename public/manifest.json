@@ -1,6 +1,6 @@
 {
-  "name": "EmpowerLearn Stories",
-  "short_name": "EmpowerLearn",
+  "name": "Arunoda",
+  "short_name": "Arunoda",
   "description": "Story-driven learning for rural communities",
   "start_url": "/",
   "display": "standalone",
@@ -9,19 +9,17 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "/placeholder.svg",
+      "src": "/boru1.png",
       "sizes": "192x192",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "type": "image/png"
     },
     {
-      "src": "/placeholder.svg",
+      "src": "/boru1.png",
       "sizes": "512x512",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "type": "image/png"
     }
   ],
-  "categories": ["education", "social", "productivity"],
+  "categories": ["education", "social", "productivity","learning","poverty"],
   "lang": "en",
   "dir": "ltr"
 }

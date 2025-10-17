@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Play, ChevronRight, Star, TrendingUp, DollarSign, X } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Play, ChevronRight, Star, TrendingUp, DollarSign } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -11,8 +13,11 @@ import { db } from '@/lib/db';
 import { t } from '@/lib/i18n';
 import type { InvestorRequest } from '@/lib/types';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function HomePage() {
+  const { user, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
   const [featuredPitches, setFeaturedPitches] = useState<InvestorRequest[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
@@ -26,6 +31,8 @@ export default function HomePage() {
     Today, Sunitha’s stall not only supports her family but also inspires others in her community to start their own small businesses.
     Her journey shows how passion and persistence can turn small beginnings into remarkable success.
   `;
+
+  // Removed authentication redirect for testing
 
   useEffect(() => {
     loadFeaturedPitches();
@@ -72,11 +79,16 @@ export default function HomePage() {
         
         <div className="relative max-w-screen-lg mx-auto text-center space-y-6">
           <h1 className="text-4xl md:text-5xl font-bold">
-            EmpowerLearn Stories
+            {user ? `Welcome back, ${user.name}! 👋` : 'Welcome to EmpowerLearn! 🎓'}
           </h1>
           <p className="text-lg md:text-xl opacity-95 max-w-2xl mx-auto">
             Grow Your Skills, Share Your Story
           </p>
+          {user && (
+            <p className="text-sm opacity-80">
+              📍 {user.district} • {user.role === 'admin' ? '👑 Admin' : '👤 Member'}
+            </p>
+          )}
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
             <Link to="/learn">
