@@ -405,7 +405,6 @@ Learn & Grow
                       </Card>
                     ))}
                   </div>
-                </section>
 
         <ProgressCard
             percentage={60}
