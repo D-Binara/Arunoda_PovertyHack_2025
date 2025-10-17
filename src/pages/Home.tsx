@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Play, ChevronRight, Star, TrendingUp, DollarSign, X, Bot } from 'lucide-react';
+import { Play, ChevronRight, Star, TrendingUp, DollarSign, X, Bot, MapPin } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -18,6 +18,7 @@ import ProductPreview from '@/pages/Products';
 import LearnGrowSection from './components/home/learnGrowSection';
 
 import BizAdvisorChat from '@/components/BizAdvisorChat';
+import JobsPreviewSection from './components/home/JobsPreviewSection';
 
 export default function HomePage() {
   const { user, isAuthenticated } = useAuth();
@@ -367,39 +368,13 @@ Learn & Grow
                     </div>
                   </section>
                 )}
-        
-                {/* Jobs */}
-                <section>
-                  <div className="flex items-center justify-between mb-4">
-                    <h2 className="text-2xl font-bold">💼 Jobs & Collaboration</h2>
-                    <Link to="/jobs" className="text-sm text-primary hover:underline flex items-center">
-                      View All <ChevronRight className="h-4 w-4" />
-                    </Link>
-                  </div>
-                  
-                  <div className="space-y-3">
-                    {[
-                      { title: 'Farm Helper', pay: 'Rs. 1,500/day', location: 'Kurunegala' },
-                      { title: 'Social Media Helper', pay: 'Rs. 2,000/week', location: 'Colombo' },
-                      { title: 'Delivery Partner', pay: 'Rs. 500/delivery', location: 'Gampaha' },
-                    ].map((job, i) => (
-                      <Card key={i} className="card-elevated">
-                        <CardContent className="p-4 flex justify-between items-center">
-                          <div>
-                            <h3 className="font-semibold">{job.title}</h3>
-                            <p className="text-sm text-muted-foreground">{job.location} • {job.pay}</p>
-                          </div>
-                          <Button variant="default" size="sm">Apply</Button>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
-                </section>
+        <JobsPreviewSection/>
+            
         
                 {/* My Progress */}
                 <Card className="card-elevated bg-gradient-to-br from-secondary-light to-accent-light border-0">
                   <CardContent className="p-6 space-y-4">
-                    <h2 className="text-2xl font-bold">🏅 My Progress</h2>
+                    <h2 className="text-2xl font-bold"> My Progress</h2>
                     <div className="flex items-center gap-4">
                       <div className="relative">
                         <svg className="w-24 h-24 transform -rotate-90">
