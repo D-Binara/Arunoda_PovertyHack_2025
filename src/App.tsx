@@ -18,6 +18,8 @@ const Learn = lazy(() => import("./pages/Learn"));
 const Products = lazy(() => import("./pages/Products"));
 const ProductNew = lazy(() => import("./pages/ProductNew"));
 const Jobs = lazy(() => import("./pages/Jobs"));
+const JobNew = lazy(() => import("./pages/JobNew"));
+const JobDetail = lazy(() => import("./pages/JobDetail"));
 const Stories = lazy(() => import("./pages/Stories"));
 const StoriesNew = lazy(() => import("./pages/StoriesNew"));
 const Messages = lazy(() => import("./pages/Messages"));
@@ -27,6 +29,8 @@ const InvestorConnect = lazy(() => import("./pages/InvestorConnect"));
 const InvestorRequestNew = lazy(() => import("./pages/InvestorRequestNew"));
 const Entrepreneurs = lazy(() => import("./pages/Entrepreneurs"));
 const EntrepreneurProfile = lazy(() => import("./pages/EntrepreneurProfile"));
+const ProductsPage = lazy(() => import('@/pages/Products'));
+const ProductDetailPage = lazy(() => import('@/pages/ProductDetailPage'));
 
 const queryClient = new QueryClient();
 
@@ -48,6 +52,8 @@ const App = () => (
                     <Route path="/products" element={<Products />} />
                     <Route path="/products/new" element={<ProductNew />} />
                     <Route path="/jobs" element={<Jobs />} />
+                    <Route path="/jobs/new" element={<JobNew />} />
+                    <Route path="/jobs/:id" element={<JobDetail />} />
                     <Route path="/stories" element={<Stories />} />
                     <Route path="/stories/new" element={<StoriesNew />} />
                     <Route path="/stories/sunitha" element={<SunithaStoryPage />} />
@@ -59,6 +65,8 @@ const App = () => (
                     <Route path="/entrepreneurs" element={<Entrepreneurs />} />
                     <Route path="/entrepreneurs/:id" element={<EntrepreneurProfile />} />
                     <Route path="*" element={<NotFound />} />
+                    <Route path="/products" element={<ProductsPage />} />
+                    <Route path="/products/:id" element={<ProductDetailPage />} />
                 </Route>
           </Routes>
         </Suspense>
