@@ -13,6 +13,7 @@ import type { InvestorRequest } from '@/lib/types';
 import { useAuth } from '@/contexts/AuthContext';
 import { TopNav } from '@/components/Navbar/TopNav';
 import StoryCard from './components/home/storycard';
+import ProductPreview from '@/pages/Products';
 
 export default function HomePage() {
   const { user, isAuthenticated } = useAuth();
@@ -288,27 +289,11 @@ Story of the Week
                   <div className="flex items-center justify-between mb-4">
                     <h2 className="text-2xl font-bold">🛍️ Local Products</h2>
                     <Link to="/products" className="text-sm text-primary hover:underline flex items-center">
-                      View All <ChevronRight className="h-4 w-4" />
+                      View All
                     </Link>
                   </div>
-                  
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    {[
-                      { title: 'Fresh Vegetables', price: 500, image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&h=300&fit=crop' },
-                      { title: 'Handmade Baskets', price: 'Negotiable', image: 'https://images.unsplash.com/photo-1523726491678-bf852e717f6a?w=400&h=300&fit=crop' },
-                      { title: 'Mobile Repair', price: 1500, image: 'https://images.unsplash.com/photo-1556656793-08538906a9f8?w=400&h=300&fit=crop' },
-                    ].map((product, i) => (
-                      <Card key={i} className="card-elevated overflow-hidden">
-                        <img src={product.image} alt={product.title} className="w-full h-32 object-cover" />
-                        <CardContent className="p-3 space-y-1">
-                          <h3 className="font-semibold text-sm">{product.title}</h3>
-                          <p className="text-primary font-bold text-sm">
-                            {typeof product.price === 'number' ? `Rs. ${product.price}` : product.price}
-                          </p>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
+
+                  <ProductPreview limit={3} />
                 </section>
         
                 {/* Investor Pitches */}

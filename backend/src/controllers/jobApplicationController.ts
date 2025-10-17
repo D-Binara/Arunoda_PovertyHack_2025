@@ -13,6 +13,11 @@ export const applyForJob = asyncHandler(async (req: AuthRequest, res: Response) 
   const { jobId } = req.params;
   const { message, audioMessage } = req.body;
 
+  // Validate that at least one form of message is provided
+  if (!message && !audioMessage) {
+    throw new AppError('Please provide either a text message or audio message', 400);
+  }
+
   // Check if job exists
   const job = await Job.findById(jobId);
   if (!job) {
