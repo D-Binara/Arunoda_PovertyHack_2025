@@ -12,6 +12,7 @@ import { t } from '@/lib/i18n';
 import type { InvestorRequest } from '@/lib/types';
 import { useAuth } from '@/contexts/AuthContext';
 import { TopNav } from '@/components/Navbar/TopNav';
+import StoryCard from './components/home/storycard';
 import ProductPreview from '@/pages/Products';
 
 export default function HomePage() {
@@ -109,21 +110,28 @@ export default function HomePage() {
 
       <div className="max-w-screen-lg mx-auto px-4 space-y-8 py-8">
         {/* Story of the Week */}
-        <Card className="card-elevated">
-          <CardHeader>
+        <h1 className="not-italic font-serif text-transparent text-black text-center  text-4xl md:text-5xl lg:text-6xl">
+Story of the Week
+                </h1>
+        {/* <Card className="card-elevated"> */}
+          {/* <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Star className="h-5 w-5 text-primary" />
               ⭐ Story of the Week
             </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex gap-4">
+          </CardHeader> */}
+
+
+          {/* <CardContent>
+            <div className="flex gap-4" >
+             <div className="absolute left-44 md:left-44 ">
               <img
-                src="https://images.stockcake.com/public/a/d/e/ade4a3ff-194c-4f13-912b-49c45972fec3_large/vibrant-food-stall-stockcake.jpg"
+                src="/img/Home/story.png"
                 alt="Featured story"
-                className="w-24 h-24 rounded-lg object-cover"
+                className="w-44 rounded-lg "
               />
-              <div className="flex-1 space-y-2">
+              </div>
+              <div className="flex-1 mt-5 space-y-2 ml-44">
                 <h3 className="font-semibold">{storyTitle}</h3>
                 <p className="text-sm text-muted-foreground">
                   From Rs. 5,000 to 50+ daily customers
@@ -140,13 +148,68 @@ export default function HomePage() {
                   >
                    View Story
                   </Button>
-
+<div className=' px-3 py-1 '>
+ 
                   <OfflineBadge />
+                  </div>
                 </div>
               </div>
             </div>
-          </CardContent>
-        </Card>
+          </CardContent> */}
+        {/* </Card> */}
+ <div className="flex flex-col md:flex-row items-center md:items-center gap-8 md:gap-12 py-4">
+    {/* LEFT SIDE — Image Container */}
+    <div className="w-full max-w-sm md:max-w-xs flex-shrink-0">
+      <img
+        src="/img/Home/image12w.png"
+        alt="Featured story"
+        className="w-full h-auto rounded-lg object-cover"
+      />
+      {/* Optional: Add absolute positioning styles here if you uncomment the span */}
+    </div>
+
+    {/* RIGHT SIDE — Content */}
+    <div className="flex-1 text-center md:text-left space-y-4">
+      <h3 className="text-3xl sm:text-4xl font-semibold text-neutral-900 leading-snug">
+        {storyTitle}
+      </h3>
+
+      <p className="text-base text-neutral-600 max-w-xl mx-auto md:mx-0">
+        From <span className="font-bold text-[#F57C00]">Rs. 5,000</span> to{" "}
+        <span className="font-bold text-[#F57C00]">50+ daily customers</span> —
+        a journey of passion and persistence that transformed a small dream into
+        a thriving local business.
+      </p>
+
+      <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3 pt-2">
+        {/* Listen Button */}
+        <Button
+          size="sm"
+          variant="default"
+          onClick={speakStory}
+          className="w-full sm:w-auto bg-[#F57C00] hover:bg-[#EF6C00] text-white"
+        >
+          <Play className="h-4 w-4 mr-1" />
+          {isSpeaking ? "Stop" : "Listen"}
+        </Button>
+
+        {/* View Story Button */}
+        <Button
+          size="sm"
+          variant="outline"
+          onClick={() => navigate("/stories/sunitha")}
+          className="w-full sm:w-auto border-[#F57C00]/40 text-[#F57C00] hover:bg-orange-50"
+        >
+          View Story
+        </Button>
+
+        {/* Badge/Other Elements */}
+        <div className="flex items-center gap-2 pt-2 sm:pt-0">
+          <OfflineBadge />
+        </div>
+      </div>
+    </div>
+</div>
 
         {/* Story Modal */}
         {isModalOpen && (
