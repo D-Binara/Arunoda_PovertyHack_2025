@@ -209,7 +209,7 @@ const EntrepreneurProfile: React.FC = () => {
                             <ContactButton
                                 label="Propose Collaboration"
                                 icon={Handshake}
-                                href={`/jobs?collabWith=${data._id}`}
+                                href={`/investor-connect`}
                             />
                         </div>
                     </div>
