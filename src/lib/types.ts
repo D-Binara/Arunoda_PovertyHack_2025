@@ -36,12 +36,13 @@ export interface Story {
   id: string;
   packId: string;
   title: string;
-  character: string;
-  characterImage: string;
-  scenes: StoryScene[];
-  quizQuestions: QuizQuestion[];
+  description?: string;
+  character?: string;
+  characterImage?: string;
+  scenes?: StoryScene[];
+  quizQuestions?: QuizQuestion[];
   badge?: string;
-  completed: boolean;
+  completed?: boolean;
 }
 
 export interface StoryScene {
@@ -193,7 +194,7 @@ export interface Settings {
   language: "en" | "si" | "ta";
   ttsEnabled: boolean;
   autoDownload: boolean;
-  dataUsageLimit: number; // MB per month
+  dataUsageLimit: number;
 }
 
 export type SyncStatus = "synced" | "pending" | "error";
@@ -201,7 +202,8 @@ export type SyncStatus = "synced" | "pending" | "error";
 export interface OutboxItem {
   id: string;
   type: "product" | "story" | "message" | "application";
-  data: any;
+  data: Product | Story | Message ; // ← replace `any`
   createdAt: Date;
   retryCount: number;
 }
+
