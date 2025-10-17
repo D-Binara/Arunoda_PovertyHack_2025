@@ -10,6 +10,9 @@ import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import SunithaStoryPage from './pages/SunithaStoryPage';
 import CourseDetailPage from '@/pages/CourseDetailPage';
+import HomePage from '@/pages/Home';
+import ProductsPage from '@/pages/Products';
+import ProductDetailPage from '@/pages/ProductDetailPage';
 
 const Learn = lazy(() => import("./pages/Learn"));
 const Products = lazy(() => import("./pages/Products"));
@@ -51,6 +54,9 @@ const App = () => (
             <Route path="/learn/:id" element={<CourseDetailPage />} />
             <Route path="/investor-connect" element={<InvestorConnect />} />
             <Route path="/investor-request/new" element={<InvestorRequestNew />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/products" element={<ProductsPage />} />
+            <Route path="/products/:id" element={<ProductDetailPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
