@@ -5,7 +5,6 @@ import {TopNav} from "@/components/Navbar/TopNav.tsx";
 export default function LandingPage() {
 return (
     <>
-        <TopNav/>
     <Hero user={"test"}/>
     </>
 )
