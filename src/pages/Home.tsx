@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Play, ChevronRight, Star, TrendingUp, DollarSign, X } from 'lucide-react';
+import { Play, ChevronRight, Star, TrendingUp, DollarSign, X, Bot } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -14,12 +14,14 @@ import { useAuth } from '@/contexts/AuthContext';
 import { TopNav } from '@/components/Navbar/TopNav';
 import StoryCard from './components/home/storycard';
 import ProductPreview from '@/pages/Products';
+import BizAdvisorChat from '@/components/BizAdvisorChat';
 
 export default function HomePage() {
   const { user, isAuthenticated } = useAuth();
   const [featuredPitches, setFeaturedPitches] = useState<InvestorRequest[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
+  const [isBizAdvisorOpen, setIsBizAdvisorOpen] = useState(false);
   const navigate = useNavigate();
 
   const storyTitle = "Sunitha's Food Stall Success";
@@ -106,6 +108,15 @@ export default function HomePage() {
                 {t("showSkill")}
               </Button>
             </Link>
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="w-full sm:w-auto bg-orange-500/90 border-orange-400 text-white hover:bg-orange-600 font-semibold"
+              onClick={() => setIsBizAdvisorOpen(true)}
+            >
+              <Bot className="h-5 w-5 mr-2" />
+              BiZ Advisor
+            </Button>
           </div>
         </div>
       </section>
@@ -426,6 +437,13 @@ Story of the Week
                   </CardContent>
                 </Card>
               </div>
+      
+      {/* BiZ Advisor Chat */}
+      <BizAdvisorChat 
+        isOpen={isBizAdvisorOpen} 
+        onClose={() => setIsBizAdvisorOpen(false)} 
+      />
+      
       {/* <BottomNav /> */}
     </div>
   );
