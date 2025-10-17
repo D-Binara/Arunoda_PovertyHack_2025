@@ -14,6 +14,9 @@ import { useAuth } from '@/contexts/AuthContext';
 import { TopNav } from '@/components/Navbar/TopNav';
 import StoryCard from './components/home/storycard';
 import ProductPreview from '@/pages/Products';
+
+import LearnGrowSection from './components/home/learnGrowSection';
+
 import BizAdvisorChat from '@/components/BizAdvisorChat';
 
 export default function HomePage() {
@@ -76,8 +79,18 @@ export default function HomePage() {
       {/* Hero Section */}
       <section>
         </section>
-      <section className="relative bg-gradient-to-br from-primary via-primary-glow to-secondary py-16 px-4 text-primary-foreground overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
+     <section
+  className="relative overflow-hidden text-white py-16 px-4"
+  style={{
+    backgroundImage:
+      "url('/img/Home/top.png')", // 🔁 Replace with your image
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  }}
+>
+    {/* Black overlay layer */}
+  <div className="absolute inset-0 bg-black/60" />
+   <div className="absolute inset-0 opacity-10">
           <div className="absolute top-10 left-10 w-32 h-32 bg-white rounded-full blur-3xl" />
           <div className="absolute bottom-10 right-10 w-40 h-40 bg-white rounded-full blur-3xl" />
         </div>
@@ -248,11 +261,14 @@ Story of the Week
             </div>
           </div>
         )}
-
-        {/* Learn & Grow */}
+<LearnGrowSection/>
+        {/* Learn & Grow
           <section>
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-2xl font-bold">🎓 Learn & Grow</h2>
+            <div className="mt-10 flex items-center justify-between mb-4">
+                  <h1 className="not-italic font-serif text-transparent text-black text-center  text-4xl md:text-5xl lg:text-6xl">
+Learn & Grow
+                </h1>
+              <h2 className="text-2xl font-bold">🎓 </h2>
               <Link to="/learn" className="text-sm text-primary hover:underline flex items-center">
                 View All <ChevronRight className="h-4 w-4" />
               </Link>
@@ -294,7 +310,7 @@ Story of the Week
                 </Link>
               ))}
             </div>
-          </section>
+          </section> */}
 
 
         {/* Local Products */}
