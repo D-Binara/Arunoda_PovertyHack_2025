@@ -4,40 +4,61 @@ import { Button } from '@/components/ui/button';
 import { OfflineBadge } from '@/components/OfflineBadge';
 import { useNavigate } from 'react-router-dom';
 import { Facebook, Linkedin, Twitter,Play, Link as LinkIcon, MapPin, Award } from "lucide-react";
+import {useI18n} from '@/lib/i18n';
+
 // New Content for the Mask Artisan
 const storyTitle = "Arun's Legacy: Rebirth of Traditional Hand-Carved Masks";
-const storyText = `
-The air in Arun’s small workshop is thick with the sweet, woody scent of Kaddur and Kadamba. For years, the vibrant art of traditional wooden mask carving felt like a sunset art, fading with the older generation. Arun, however, saw not an ending, but a challenge. He inherited not wealth, but a singular, essential tool: his grandfather's chisel, smoothed and worn by decades of tireless work.
 
-His journey began with just a few rupees, enough to buy a small block of wood. The first masks he carved were clumsy, but they held a promise—the ancient, soulful expressions passed down through his family. He spent every day refining the tilt of a demon’s eye, the serenity of a deity's smile, and the subtle, lifelike textures that define this intricate craft.
 
-The turning point wasn't a sudden burst of sales, but recognition from a local cultural society. They saw the purity and persistence in his work. He started teaching, sharing his knowledge, and suddenly, his craft was alive again. His customer base grew beyond local patrons to include international collectors and museums who cherished the authenticity of his handiwork.
-
-From a solitary artist struggling to keep the lights on, Arun is now the master of a thriving cooperative, employing three apprentices. His income has soared, but his true measure of success lies in the revival of the tradition. He proved that even in a digital world, there is an unquenchable thirst for things made by human hands, carrying a legacy carved in wood.
-
-Today, Arun’s masks adorn galleries, and his small shop has become a center for cultural preservation. He’s not just carving wood; he’s carving the future of an ancient art, one patient, perfect stroke at a time. His legacy is proof that passion, linked to deep cultural roots, can always find a global audience.
-`;
 
 const SunithaStoryPage = () => {
   const navigate = useNavigate();
   const [isSpeaking, setIsSpeaking] = useState(false);
+  const { t, language } = useI18n();
+  const storyText = t("story");
+
 
   // Speech synthesis logic remains the same
-  const speakStory = () => {
-    if (isSpeaking) {
-      window.speechSynthesis.cancel();
-      setIsSpeaking(false);
-    } else {
-      const utterance = new SpeechSynthesisUtterance(storyText);
-      // Clean up whitespace from the start/end of the story text for better narration
-      utterance.text = storyText.trim();
-      utterance.onend = () => setIsSpeaking(false);
-      window.speechSynthesis.speak(utterance);
-      setIsSpeaking(true);
-    }
-  };
+    const speakStory = () => {
+        window.speechSynthesis.cancel();
 
-  useEffect(() => {
+        if (isSpeaking) {
+            setIsSpeaking(false);
+            return;
+        }
+
+        const text = t("story");
+        const utterance = new SpeechSynthesisUtterance(text);
+
+        // Select language + safe fallback
+        let targetLang = "en-US";
+        if (language === "si") targetLang = "si";
+        else if (language === "ta") targetLang = "ta-IN";
+        utterance.lang = targetLang;
+
+        // Try to match a voice
+        const voices = window.speechSynthesis.getVoices();
+        const matchedVoice = voices.find(v => v.lang.startsWith(targetLang));
+
+        if (matchedVoice) {
+            utterance.voice = matchedVoice;
+        } else {
+            // Fallback to English voice with warning
+            console.warn(`⚠️ No ${targetLang} voice found — falling back to English.`);
+            const englishVoice = voices.find(v => v.lang.startsWith("en")) || null;
+            if (englishVoice) utterance.voice = englishVoice;
+        }
+
+        utterance.rate = 1;
+        utterance.pitch = 1;
+        utterance.volume = 1;
+        utterance.onend = () => setIsSpeaking(false);
+
+        window.speechSynthesis.speak(utterance);
+        setIsSpeaking(true);
+    };
+
+    useEffect(() => {
     return () => window.speechSynthesis.cancel();
   }, []);
 
@@ -210,7 +231,7 @@ const SunithaStoryPage = () => {
 
                 {/* Full Story Text */}
                 <p className="text-base text-gray-600 dark:text-gray-400 whitespace-pre-line leading-relaxed">
-                    {storyText}
+                   {t("story")}
                 </p>
             </div>
 

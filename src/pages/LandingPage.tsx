@@ -1,11 +1,24 @@
 import Hero from "@/pages/components/landing/hero.tsx";
-import user from "../../backend/src/models/User.ts";
-import {TopNav} from "@/components/Navbar/TopNav.tsx";
+import ProblemStatement from "@/pages/components/landing/ProblemStatement.tsx";
+import SolutionSection from "@/pages/components/landing/SolutionStatement.tsx";
+import AIComponentsSection from "./components/landing/AIComponentsSection";
+import TeamSection from "./components/landing/TheTeam";
 
 export default function LandingPage() {
-return (
-    <>
-    <Hero user={"test"}/>
-    </>
-)
+  return (
+    <div className="w-screen overflow-x-hidden flex flex-col">
+      <section className="h-screen">
+        <Hero user="test" />
+      </section>
+      <ProblemStatement />
+      <SolutionSection />
+      <AIComponentsSection />
+      <TeamSection />
+      {/* Footer */}
+      <footer className="w-full py-6 text-center bg-[#FFF3E0] text-neutral-800 ">
+        © All rights reserved. Team Zyndicate 2025. Made with ❤️ for the Rural Community.
+        </footer>
+
+    </div>
+  );
 }

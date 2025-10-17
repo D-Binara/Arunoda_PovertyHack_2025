@@ -9,7 +9,8 @@ const Hero = ({ user }) => {
   ];
 
   return (
-    <section className="relative overflow-hidden bg-[radial-gradient(1200px_600px_at_-10%_-10%,#FFE4C4_0%,#FFF3E0_30%,#FFF8F2_65%,#FFF_100%)]">
+    <section className="relative min-h-screen overflow-hidden bg-[radial-gradient(1200px_600px_at_-10%_-10%,#FFE4C4_0%,#FFF3E0_30%,#FFF8F2_65%,#FFF_100%)] flex items-center">
+
       {/* local keyframes for float */}
       <style>{`
         @keyframes float {
@@ -47,7 +48,7 @@ const Hero = ({ user }) => {
             </h1>
 
             <p className="mt-5 max-w-xl text-base md:text-lg text-neutral-700">
-              Learn, grow, and connect with investors — even offline, in your own language.
+              Learn, grow, and connect with investors, even offline, in your own language.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
