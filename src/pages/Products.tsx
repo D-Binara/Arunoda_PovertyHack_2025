@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Plus, Play } from 'lucide-react';
@@ -51,6 +52,7 @@ export default function ProductsPage() {
 
   return (
     <div className="min-h-screen bg-background pb-20">
+      
       <div className="max-w-screen-lg mx-auto px-4 py-8 space-y-6">
         <div className="flex items-center justify-between">
           <div>

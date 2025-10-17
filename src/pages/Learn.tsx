@@ -9,10 +9,12 @@ import { Badge } from '@/components/ui/badge';
 import { BottomNav } from '@/components/BottomNav';
 import { OfflineBadge } from '@/components/OfflineBadge';
 import { mockStoryPacks } from '@/lib/mock-data';
+import { useNavigate } from 'react-router-dom'; // ✅ Import navigation hook
 
 export default function LearnPage() {
   const [filter, setFilter] = useState('all');
   const [search, setSearch] = useState('');
+  const navigate = useNavigate(); // ✅ Initialize navigate
 
   const filteredPacks = mockStoryPacks.filter(pack => {
     if (search && !pack.title.toLowerCase().includes(search.toLowerCase())) return false;
@@ -54,15 +56,21 @@ export default function LearnPage() {
           {filteredPacks.map(pack => (
             <Card key={pack.id} className="card-elevated overflow-hidden">
               <div className="flex gap-4">
-                <img 
-                  src={pack.thumbnail} 
-                  alt={pack.title} 
-                  className="w-32 h-32 object-cover"
+                <img
+                  src={pack.thumbnail}
+                  alt={pack.title}
+                  className="w-32 h-32 object-cover cursor-pointer"
+                  onClick={() => navigate(`/learn/${pack.id}`)} // ✅ Clickable image
                 />
                 <CardContent className="flex-1 p-4 space-y-3">
                   <div className="space-y-1">
                     <div className="flex items-start justify-between gap-2">
-                      <h3 className="font-bold text-lg">{pack.title}</h3>
+                      <h3
+                        className="font-bold text-lg cursor-pointer hover:underline"
+                        onClick={() => navigate(`/learn/${pack.id}`)} // ✅ Clickable title
+                      >
+                        {pack.title}
+                      </h3>
                       {pack.featured && (
                         <Badge variant="secondary" className="bg-primary text-primary-foreground">
                           Featured
@@ -83,7 +91,12 @@ export default function LearnPage() {
                   <div className="flex items-center gap-2">
                     {pack.isDownloaded ? (
                       <>
-                        <Button size="sm" variant="secondary" className="flex-1">
+                        <Button
+                          size="sm"
+                          variant="secondary"
+                          className="flex-1"
+                          onClick={() => navigate(`/learn/${pack.id}`)} // ✅ Continue button
+                        >
                           Continue Learning
                         </Button>
                         <OfflineBadge />
