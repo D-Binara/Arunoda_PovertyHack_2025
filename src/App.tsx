@@ -18,6 +18,8 @@ const Learn = lazy(() => import("./pages/Learn"));
 const Products = lazy(() => import("./pages/Products"));
 const ProductNew = lazy(() => import("./pages/ProductNew"));
 const Jobs = lazy(() => import("./pages/Jobs"));
+const JobNew = lazy(() => import("./pages/JobNew"));
+const JobDetail = lazy(() => import("./pages/JobDetail"));
 const Stories = lazy(() => import("./pages/Stories"));
 const StoriesNew = lazy(() => import("./pages/StoriesNew"));
 const Messages = lazy(() => import("./pages/Messages"));
@@ -48,6 +50,8 @@ const App = () => (
                     <Route path="/products" element={<Products />} />
                     <Route path="/products/new" element={<ProductNew />} />
                     <Route path="/jobs" element={<Jobs />} />
+                    <Route path="/jobs/new" element={<JobNew />} />
+                    <Route path="/jobs/:id" element={<JobDetail />} />
                     <Route path="/stories" element={<Stories />} />
                     <Route path="/stories/new" element={<StoriesNew />} />
                     <Route path="/stories/sunitha" element={<SunithaStoryPage />} />

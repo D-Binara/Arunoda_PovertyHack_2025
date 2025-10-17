@@ -1,4 +1,5 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
+import { toast } from 'sonner';
 
 // API base URL - Update this if backend is running on different port
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
@@ -28,16 +29,54 @@ api.interceptors.request.use(
 // Response interceptor for error handling
 api.interceptors.response.use(
   (response) => response,
-  (error) => {
-    if (error.response?.status === 401) {
-      // Clear token and redirect to login
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      window.location.href = '/login';
+  (error: AxiosError<any>) => {
+    // Handle network errors
+    if (!error.response) {
+      toast.error('Network error. Please check your connection.');
+      return Promise.reject(error);
     }
+
+    const { status, data } = error.response;
+
+    // Handle specific status codes
+    switch (status) {
+      case 401:
+        // Clear token and redirect to login
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        toast.error('Session expired. Please login again.');
+        window.location.href = '/login';
+        break;
+      case 403:
+        toast.error(data?.message || 'You do not have permission to perform this action.');
+        break;
+      case 404:
+        toast.error(data?.message || 'Resource not found.');
+        break;
+      case 400:
+        toast.error(data?.message || 'Invalid request.');
+        break;
+      case 500:
+        toast.error('Server error. Please try again later.');
+        break;
+      default:
+        toast.error(data?.message || 'An error occurred.');
+    }
+
     return Promise.reject(error);
   }
 );
+
+// Error handling helper
+export const handleApiError = (error: any, customMessage?: string) => {
+  if (axios.isAxiosError(error)) {
+    const message = error.response?.data?.message || customMessage || 'An error occurred';
+    toast.error(message);
+  } else {
+    toast.error(customMessage || 'An unexpected error occurred');
+  }
+  console.error('API Error:', error);
+};
 
 // Authentication API
 export const authAPI = {
