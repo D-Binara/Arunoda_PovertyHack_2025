@@ -19,6 +19,8 @@ import LearnGrowSection from './components/home/learnGrowSection';
 
 import BizAdvisorChat from '@/components/BizAdvisorChat';
 import ProductList from "@/pages/components/home/productList.tsx";
+import ProgressCard from "@/pages/components/home/ProgressCard.tsx";
+import DailyTipCard from "@/pages/components/home/DailyTipCard.tsx";
 
 export default function HomePage() {
   const { user, isAuthenticated } = useAuth();
@@ -27,6 +29,12 @@ export default function HomePage() {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isBizAdvisorOpen, setIsBizAdvisorOpen] = useState(false);
   const navigate = useNavigate();
+
+  const handlePlayTip = () => {
+    // Add your audio playback logic here
+    console.log('Playing daily tip audio...');
+  };
+
 
   const storyTitle = "Sunitha's Food Stall Success";
   const storyText = `
@@ -402,63 +410,77 @@ Learn & Grow
                     ))}
                   </div>
                 </section>
+
+        <ProgressCard
+            percentage={60}
+            completedStories={3}
+            badges={[
+              { label: 'Smart Saver', icon: 'money' },
+              { label: 'Skill Builder', icon: 'skill' }
+            ]}
+        />
+
+        <DailyTipCard
+            tip="Save 10% of every income before spending. Small savings grow big!"
+            onPlayTip={handlePlayTip}
+        />
         
-                {/* My Progress */}
-                <Card className="card-elevated bg-gradient-to-br from-secondary-light to-accent-light border-0">
-                  <CardContent className="p-6 space-y-4">
-                    <h2 className="text-2xl font-bold">🏅 My Progress</h2>
-                    <div className="flex items-center gap-4">
-                      <div className="relative">
-                        <svg className="w-24 h-24 transform -rotate-90">
-                          <circle
-                            cx="48"
-                            cy="48"
-                            r="40"
-                            stroke="currentColor"
-                            strokeWidth="8"
-                            fill="none"
-                            className="text-muted"
-                          />
-                          <circle
-                            cx="48"
-                            cy="48"
-                            r="40"
-                            stroke="currentColor"
-                            strokeWidth="8"
-                            fill="none"
-                            strokeDasharray={`${2 * Math.PI * 40}`}
-                            strokeDashoffset={`${2 * Math.PI * 40 * (1 - 0.6)}`}
-                            className="text-secondary"
-                          />
-                        </svg>
-                        <div className="absolute inset-0 flex items-center justify-center text-2xl font-bold">
-                          60%
-                        </div>
-                      </div>
-                      <div className="flex-1 space-y-2">
-                        <p className="text-sm text-muted-foreground">3 stories completed</p>
-                        <div className="flex flex-wrap gap-2">
-                          <Badge variant="secondary">💰 Smart Saver</Badge>
-                          <Badge variant="secondary">🔨 Skill Builder</Badge>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-        
-                {/* Daily Tip */}
-                <Card className="card-elevated bg-accent-light border-accent">
-                  <CardContent className="p-6 space-y-3">
-                    <h2 className="text-lg font-bold">💡 Daily Tip</h2>
-                    <p className="text-foreground">
-                      Save 10% of every income before spending. Small savings grow big!
-                    </p>
-                    <Button variant="outline" size="sm">
-                      <Play className="h-4 w-4 mr-2" />
-                      Listen to Tip
-                    </Button>
-                  </CardContent>
-                </Card>
+              {/*  /!* My Progress *!/*/}
+              {/*  <Card className="card-elevated bg-gradient-to-br from-secondary-light to-accent-light border-0">*/}
+              {/*    <CardContent className="p-6 space-y-4">*/}
+              {/*      <h2 className="text-2xl font-bold">🏅 My Progress</h2>*/}
+              {/*      <div className="flex items-center gap-4">*/}
+              {/*        <div className="relative">*/}
+              {/*          <svg className="w-24 h-24 transform -rotate-90">*/}
+              {/*            <circle*/}
+              {/*              cx="48"*/}
+              {/*              cy="48"*/}
+              {/*              r="40"*/}
+              {/*              stroke="currentColor"*/}
+              {/*              strokeWidth="8"*/}
+              {/*              fill="none"*/}
+              {/*              className="text-muted"*/}
+              {/*            />*/}
+              {/*            <circle*/}
+              {/*              cx="48"*/}
+              {/*              cy="48"*/}
+              {/*              r="40"*/}
+              {/*              stroke="currentColor"*/}
+              {/*              strokeWidth="8"*/}
+              {/*              fill="none"*/}
+              {/*              strokeDasharray={`${2 * Math.PI * 40}`}*/}
+              {/*              strokeDashoffset={`${2 * Math.PI * 40 * (1 - 0.6)}`}*/}
+              {/*              className="text-secondary"*/}
+              {/*            />*/}
+              {/*          </svg>*/}
+              {/*          <div className="absolute inset-0 flex items-center justify-center text-2xl font-bold">*/}
+              {/*            60%*/}
+              {/*          </div>*/}
+              {/*        </div>*/}
+              {/*        <div className="flex-1 space-y-2">*/}
+              {/*          <p className="text-sm text-muted-foreground">3 stories completed</p>*/}
+              {/*          <div className="flex flex-wrap gap-2">*/}
+              {/*            <Badge variant="secondary">💰 Smart Saver</Badge>*/}
+              {/*            <Badge variant="secondary">🔨 Skill Builder</Badge>*/}
+              {/*          </div>*/}
+              {/*        </div>*/}
+              {/*      </div>*/}
+              {/*    </CardContent>*/}
+              {/*  </Card>*/}
+
+              {/*  /!* Daily Tip *!/*/}
+              {/*  <Card className="card-elevated bg-accent-light border-accent">*/}
+              {/*    <CardContent className="p-6 space-y-3">*/}
+              {/*      <h2 className="text-lg font-bold">💡 Daily Tip</h2>*/}
+              {/*      <p className="text-foreground">*/}
+              {/*        Save 10% of every income before spending. Small savings grow big!*/}
+              {/*      </p>*/}
+              {/*      <Button variant="outline" size="sm">*/}
+              {/*        <Play className="h-4 w-4 mr-2" />*/}
+              {/*        Listen to Tip*/}
+              {/*      </Button>*/}
+              {/*    </CardContent>*/}
+              {/*  </Card>*/}
               </div>
       
       {/* BiZ Advisor Chat */}
