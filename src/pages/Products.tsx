@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Plus, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -6,14 +6,48 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { BottomNav } from '@/components/BottomNav';
-import { mockProducts } from '@/lib/mock-data';
+import { productsAPI } from '@/lib/api';
+import { toast } from 'sonner';
+
+interface Product {
+  _id: string;
+  title: string;
+  description: string;
+  price: number | string;
+  category: string;
+  village: string;
+  district: string;
+  images: string[];
+  status: string;
+  userId: {
+    name: string;
+  };
+}
 
 export default function ProductsPage() {
   const [category, setCategory] = useState<'all' | 'food' | 'crafts' | 'services'>('all');
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const filteredProducts = category === 'all' 
-    ? mockProducts 
-    : mockProducts.filter(p => p.category === category);
+  useEffect(() => {
+    fetchProducts();
+  }, [category]);
+
+  const fetchProducts = async () => {
+    try {
+      setLoading(true);
+      const params = category !== 'all' ? { category } : {};
+      const response = await productsAPI.getAll(params);
+      setProducts(response.data.data);
+    } catch (error: any) {
+      console.error('Error fetching products:', error);
+      toast.error('Failed to load products');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const filteredProducts = products;
 
   return (
     <div className="min-h-screen bg-background pb-20">
@@ -41,10 +75,32 @@ export default function ProductsPage() {
           </TabsList>
         </Tabs>
 
+        {/* Loading State */}
+        {loading && (
+          <div className="text-center py-12">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+            <p className="text-muted-foreground">Loading products...</p>
+          </div>
+        )}
+
+        {/* Empty State */}
+        {!loading && filteredProducts.length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-muted-foreground mb-4">No products found</p>
+            <Link to="/products/new">
+              <Button>
+                <Plus className="h-4 w-4 mr-2" />
+                Add First Product
+              </Button>
+            </Link>
+          </div>
+        )}
+
         {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {filteredProducts.map(product => (
-            <Card key={product.id} className="card-elevated overflow-hidden group">
+        {!loading && filteredProducts.length > 0 && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {filteredProducts.map(product => (
+              <Card key={product._id} className="card-elevated overflow-hidden group">
               <img 
                 src={product.images[0]} 
                 alt={product.title}
@@ -71,30 +127,19 @@ export default function ProductsPage() {
                   📍 {product.village}, {product.district}
                 </p>
 
-                {product.audioDescription && (
-                  <Button variant="outline" size="sm" className="w-full">
-                    <Play className="h-4 w-4 mr-2" />
-                    Hear Description
-                  </Button>
-                )}
-
                 <div className="flex gap-2">
                   <Button variant="default" size="sm" className="flex-1">
                     Contact Seller
                   </Button>
                 </div>
-
-                {product.syncStatus === 'pending' && (
-                  <Badge variant="outline" className="w-full justify-center">
-                    ⏳ Pending Sync
-                  </Badge>
-                )}
               </CardContent>
             </Card>
           ))}
         </div>
+        )}
 
-        {filteredProducts.length === 0 && (
+        {/* Empty State when no products after filtering */}
+        {!loading && filteredProducts.length === 0 && products.length > 0 && (
           <div className="text-center py-12 text-muted-foreground">
             No products found in this category.
           </div>
