@@ -8,7 +8,7 @@ import { Progress } from '@/components/ui/progress';
 import { BottomNav } from '@/components/BottomNav';
 import { OfflineBadge } from '@/components/OfflineBadge';
 import { db } from '@/lib/db';
-import { t } from '@/lib/i18n';
+import {t, useI18n} from '@/lib/i18n';
 import type { InvestorRequest } from '@/lib/types';
 import { useAuth } from '@/contexts/AuthContext';
 import { TopNav } from '@/components/Navbar/TopNav';
@@ -66,6 +66,8 @@ export default function HomePage() {
     setIsSpeaking(false);
   };
 
+  const { t } = useI18n();
+
   return (
     <div className="min-h-screen bg-background pb-20">
       {/* Hero Section */}
@@ -100,7 +102,7 @@ export default function HomePage() {
             <Link to="/products/new">
               <Button size="lg" variant="outline" className="w-full sm:w-auto bg-white/10 border-white/30 text-white hover:bg-white/20">
                 <TrendingUp className="h-5 w-5 mr-2" />
-                Show My Skill
+                {t("showSkill")}
               </Button>
             </Link>
           </div>
