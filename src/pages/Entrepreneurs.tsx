@@ -428,7 +428,7 @@ export default Entrepreneurs;
 const HeaderBar = () => (
     <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
         <div>
-            <h1 className="text-2xl font-semibold tracking-tight">Entrepreneurs</h1>
+            <h1 className="text-2xl font-semibold tracking-tight">Investors</h1>
             <p className="mt-1 text-sm text-muted-foreground">
                 Discover local talent across Sri Lanka — filtered by district, skills, and more.
             </p>
