@@ -300,8 +300,7 @@ export default function InvestorConnect() {
 
                         <div className="bg-muted/50 p-3 rounded-md space-y-2">
                           <div className="flex items-center gap-2 text-lg font-bold text-primary">
-                            <DollarSign className="w-5 h-5" />
-                            LKR {request.amount.toLocaleString()}
+                            Rs. {request.amount.toLocaleString()}
                           </div>
                           <p className="text-sm">{request.purpose}</p>
                         </div>

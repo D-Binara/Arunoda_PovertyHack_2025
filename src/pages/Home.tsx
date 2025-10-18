@@ -26,6 +26,57 @@ import ProductList from "@/pages/components/home/productList.tsx";
 import ProgressCard from "@/pages/components/home/ProgressCard.tsx";
 import DailyTipCard from "@/pages/components/home/DailyTipCard.tsx";
 
+const dummyData: InvestorRequest[] = [
+    {
+        id: 'req_1',
+        userId: 'user_1',
+        userName: 'Kumara Silva',
+        village: 'Galle Fort',
+        district: 'Galle',
+        category: 'Agriculture',
+        amount: 250000,
+        purpose: 'To expand organic vegetable farming using eco-friendly irrigation systems.',
+        roiDescription: '10% ROI within 8 months',
+        timeline: '8 months',
+        status: 'active',
+        featured: true,
+        createdAt: new Date('2025-10-01'),
+        bookmarkedBy: [],
+    },
+    {
+        id: 'req_2',
+        userId: 'user_2',
+        userName: 'Nimali Perera',
+        village: 'Kandy Town',
+        district: 'Kandy',
+        category: 'Handicrafts',
+        amount: 150000,
+        purpose: 'Funding to purchase materials for a women-led batik workshop.',
+        roiDescription: '12% ROI in 1 year',
+        timeline: '12 months',
+        status: 'active',
+        featured: false,
+        createdAt: new Date('2025-09-25'),
+        bookmarkedBy: ['user_2'],
+    },
+    {
+        id: 'req_3',
+        userId: 'user_3',
+        userName: 'Suresh Fernando',
+        village: 'Negombo Beach',
+        district: 'Gampaha',
+        category: 'Fisheries',
+        amount: 500000,
+        purpose: 'Investing in modern fish drying and packaging facilities.',
+        roiDescription: '15% ROI within 10 months',
+        timeline: '10 months',
+        status: 'funded',
+        featured: true,
+        createdAt: new Date('2025-08-10'),
+        bookmarkedBy: ['user_1'],
+    },
+];
+
 export default function HomePage() {
     const { user, isAuthenticated } = useAuth();
     const [featuredPitches, setFeaturedPitches] = useState<InvestorRequest[]>([]);
@@ -48,10 +99,9 @@ export default function HomePage() {
   `;
 
     useEffect(() => {
-        loadFeaturedPitches();
-        return () => {
-            window.speechSynthesis.cancel();
-        };
+        // Just filter and set featured pitches from dummyData
+        const featured = dummyData.filter((pitch) => pitch.featured).slice(0, 3);
+        setFeaturedPitches(featured);
     }, []);
 
     const loadFeaturedPitches = async () => {
@@ -151,10 +201,7 @@ export default function HomePage() {
                         </h3>
 
                         <p className="text-base text-neutral-600 max-w-xl mx-auto md:mx-0">
-                            {t('fromToCustomers', {
-                                amount: t('rsAmount', { amount: '5,000' }),
-                                customers: t('dailyCustomers', { count: '50' }),
-                            })}
+                            The Story of Revival: A legacy carved in wood.
                         </p>
 
                         <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3 pt-2">
@@ -200,13 +247,16 @@ export default function HomePage() {
                     <ProductList limit={3} />
                 </section>
 
-                {/* Investor Pitches */}
+                {/*/!* Investor Pitches *!/*/}
                 {featuredPitches.length > 0 && (
                     <section>
                         <div className="flex items-center justify-between mb-4">
-                            <h2 className="text-2xl font-bold">{t('💼 Investor Pitches')}</h2>
-                            <Link to="/investor-connect" className="text-sm text-primary hover:underline flex items-center">
-                                {t('viewAll')} <ChevronRight className="h-4 w-4" />
+                            <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl text-neutral-900 dark:text-white">
+                                {t('Investor Pitches')}
+                            </h1>
+                            <Link to="/investor-connect"
+                                  className="text-sm text-primary hover:underline flex items-center">
+                                {t('viewAll')} <ChevronRight className="h-4 w-4"/>
                             </Link>
                         </div>
 
@@ -224,8 +274,7 @@ export default function HomePage() {
                                             </div>
                                             <div className="text-right">
                                                 <div className="flex items-center gap-1 text-lg font-bold text-primary">
-                                                    <DollarSign className="w-4 h-4" />
-                                                    {t('rsAmount', { amount: (pitch.amount / 1000).toFixed(0) + 'K' })}
+                                                    Amount: Rs. {pitch.amount }
                                                 </div>
                                                 <Badge variant="secondary" className="text-xs mt-1">{t(pitch.category as any)}</Badge>
                                             </div>

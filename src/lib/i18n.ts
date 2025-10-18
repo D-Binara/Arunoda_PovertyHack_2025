@@ -131,7 +131,7 @@ const translations = {
     'Request Submitted': 'Request Submitted',
     'Your investor request has been submitted successfully': 'Your investor request has been submitted successfully',
     'Failed to submit request. Please try again.': 'Failed to submit request. Please try again.',
-    '💼 Investor Pitches': '💼 Investor Pitches',
+    'Investor Pitches': 'Investor Pitches',
 
     // EN
     welcomeBack: 'Welcome back, {{name}}! 👋',

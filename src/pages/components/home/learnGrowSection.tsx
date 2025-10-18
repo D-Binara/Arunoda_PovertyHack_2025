@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight, BookOpen, Download } from "lucide-react";
 import { Progress } from "@/components/ui/progress"; // shadcn/ui
 import { Card, CardContent } from "@/components/ui/card";
 import { OfflineBadge } from "@/components/OfflineBadge";
+import {useI18n} from "@/lib/i18n.ts";
 
 
 export default function LearnGrowSection() {
@@ -54,6 +55,7 @@ export default function LearnGrowSection() {
       downloaded: false,
     },
   ];
+  const { t } = useI18n();
 
   return (
     <section className="w-full">
@@ -61,7 +63,8 @@ export default function LearnGrowSection() {
       <div className="mt-10 mb-4 flex items-center justify-between gap-3">
         <div className="flex items-center gap-3">
           <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl text-neutral-900 dark:text-white">
-            Learn &amp; Grow
+            {t('learnGrow')}
+            {/*Learn &amp; Grow*/}
           </h1>
         
         </div>
