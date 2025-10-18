@@ -63,80 +63,91 @@ export default function ProfilePage() {
           </div>
 
           {/* Profile Card */}
-          <Card className="card-elevated overflow-hidden">
-            <CardContent className="p-0">
-              {/* Decorative banner */}
-              <div className="h-24 w-full bg-[radial-gradient(850px_220px_at_-10%_-10%,rgba(255,200,150,0.18),transparent_50%)] border-b border-border" />
-
-              <div className="p-6">
-                <div className="flex items-start gap-4">
-                  {/* Avatar */}
-                  <div className="relative -mt-14 h-20 w-20 shrink-0 rounded-full bg-primary/10 ring-2 ring-background ring-offset-2 ring-offset-muted/50 flex items-center justify-center text-3xl">
+            <Card className="max-w-xl mx-auto bg-gradient-to-b from-white to-muted/20 rounded-2xl shadow-md border border-border">
+              <CardContent className="flex flex-col items-center text-center p-8 space-y-6">
+                {/* Avatar */}
+                <div className="relative w-32 h-32 rounded-full overflow-hidden shadow-md ring-4 ring-primary/10">
+                  <div className="absolute inset-0 flex items-center justify-center bg-primary/5 text-3xl font-semibold text-primary">
                     {initials}
-                    {user?.isActive && (
-                        <span className="absolute -bottom-1 -right-1 inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-medium text-emerald-600 ring-1 ring-emerald-500/30">
+                  </div>
+                  {user?.photo && (
+                    <img
+                      src={user.photo}
+                      alt={user.name || "Profile"}
+                      className="w-full h-full object-cover"
+                    />
+                  )}
+                  {user?.isActive && (
+                    <span className="absolute -bottom-1 -right-1 flex items-center gap-1 rounded-full bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-medium text-emerald-600 ring-1 ring-emerald-500/30">
                       <BadgeCheck className="h-3 w-3" />
                       Active
                     </span>
-                    )}
-                  </div>
-
-                  {/* Main info */}
-                  <div className="flex-1 space-y-2">
-                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                      <h2 className="text-2xl font-bold">{user?.name || "—"}</h2>
-                      {user?.role && (
-                          <Badge variant="secondary" className="capitalize">
-                            {user.role}
-                          </Badge>
-                      )}
-                    </div>
-
-                    <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
-                      {user?.email && (
-                          <span className="inline-flex items-center gap-1">
-                        <Mail className="h-4 w-4" />
-                            {user.email}
-                      </span>
-                      )}
-                      {user?.district && (
-                          <span className="inline-flex items-center gap-1">
-                        <MapPin className="h-4 w-4" />
-                            {user.district}
-                      </span>
-                      )}
-                      <span className="inline-flex items-center gap-1">
-                      <User2 className="h-4 w-4" />
-                      Member since <span className="font-medium text-foreground ml-1">{memberSince}</span>
-                    </span>
-                    </div>
-
-                    {bio && <p className="text-sm text-foreground/80 leading-6">{bio}</p>}
-                  </div>
-
-                  {/* Edit */}
-                  <Button size="sm" variant="outline" onClick={() => navigate("/settings")}>
-                    <Edit className="mr-2 h-4 w-4" />
-                    Edit
-                  </Button>
+                  )}
                 </div>
+
+                {/* Name & Role */}
+                <div>
+                  <h2 className="text-2xl font-bold text-foreground tracking-tight">{user?.name || "—"}</h2>
+                  {user?.role && (
+                    <p className="text-sm text-muted-foreground capitalize mt-1 tracking-wide">
+                      {user.role}
+                    </p>
+                  )}
+                </div>
+
+                {/* Basic Info */}
+                <div className="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-3 text-sm text-muted-foreground">
+                  {user?.email && (
+                    <span className="inline-flex items-center gap-1.5">
+                      <Mail className="h-4 w-4 text-primary" /> {user.email}
+                    </span>
+                  )}
+                  {user?.district && (
+                    <span className="inline-flex items-center gap-1.5">
+                      <MapPin className="h-4 w-4 text-primary" /> {user.district}
+                    </span>
+                  )}
+                  <span className="inline-flex items-center gap-1.5">
+                    <User2 className="h-4 w-4 text-primary" />
+                    Member since{" "}
+                    <span className="font-medium text-foreground ml-1">{memberSince}</span>
+                  </span>
+                </div>
+
+                {/* Bio */}
+                {bio && (
+                  <p className="text-sm text-foreground/80 leading-relaxed max-w-md border-t pt-4">
+                    {bio}
+                  </p>
+                )}
 
                 {/* Skills */}
                 {skills.length > 0 && (
-                    <div className="mt-4 pt-4 border-t">
-                      <h3 className="mb-2 text-sm font-semibold">Skills</h3>
-                      <div className="flex flex-wrap gap-2">
-                        {skills.map((skill, i) => (
-                            <Badge key={`${skill}-${i}`} variant="secondary">
-                              {skill}
-                            </Badge>
-                        ))}
-                      </div>
+                  <div className="pt-4 border-t w-full max-w-md">
+                    <h3 className="mb-3 text-sm font-semibold text-left text-foreground">Skills</h3>
+                    <div className="flex flex-wrap justify-center gap-2">
+                      {skills.map((skill, i) => (
+                        <Badge key={`${skill}-${i}`} variant="secondary" className="px-3 py-1 text-xs">
+                          {skill}
+                        </Badge>
+                      ))}
                     </div>
+                  </div>
                 )}
-              </div>
-            </CardContent>
-          </Card>
+
+                {/* Edit Button */}
+                <Button
+                  size="sm"
+                  className="mt-4 rounded-full px-6"
+                  onClick={() => navigate("/settings")}
+                >
+                  <Edit className="mr-2 h-4 w-4" />
+                  Edit Profile
+                </Button>
+              </CardContent>
+            </Card>
+
+
 
           {/* Account Actions */}
           <Card className="card-elevated">

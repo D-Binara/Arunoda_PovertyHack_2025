@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
-import { Card, CardContent } from '@/components/ui/card';
-import { productsAPI } from '@/lib/api';
-import { toast } from 'sonner';
+import {Card, CardContent} from '@/components/ui/card';
+import {productsAPI} from '@/lib/api';
+import {toast} from 'sonner';
+
 
 interface Product {
     _id: string;
@@ -16,17 +17,21 @@ interface ProductPreviewProps {
     limit?: number;
 }
 
-export default function ProductList({ limit }: ProductPreviewProps) {
+export default function ProductList({limit}: ProductPreviewProps) {
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
+
     const navigate = useNavigate();
 
     useEffect(() => {
         fetchProducts();
     }, []);
 
+
     const fetchProducts = async () => {
         try {
+
+
             setLoading(true);
             const response = await productsAPI.getAll(); // fetch all, limit handled in frontend
             setProducts(response.data.data);
@@ -37,6 +42,7 @@ export default function ProductList({ limit }: ProductPreviewProps) {
             setLoading(false);
         }
     };
+
 
     if (loading) return <p>Loading products...</p>;
 
@@ -59,7 +65,8 @@ export default function ProductList({ limit }: ProductPreviewProps) {
                             />
 
                             {/* Subtle gradient overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div
+                                className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
                         </div>
 
@@ -73,6 +80,7 @@ export default function ProductList({ limit }: ProductPreviewProps) {
                                 {product.description || "A beautifully handcrafted local product."}
                             </p>
 
+
                             <p className="text-xl font-bold text-[#F57C00]">
                                 {typeof product.price === "number" ? `Rs. ${product.price.toLocaleString()}` : "Negotiable"}
                             </p>
@@ -80,6 +88,8 @@ export default function ProductList({ limit }: ProductPreviewProps) {
                     </Card>
                 </Link>
             ))}
+
+
         </div>
     );
 }
