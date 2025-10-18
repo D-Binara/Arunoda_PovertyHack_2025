@@ -3,6 +3,7 @@ import ProblemStatement from "@/pages/components/landing/ProblemStatement.tsx";
 import SolutionSection from "@/pages/components/landing/SolutionStatement.tsx";
 import AIComponentsSection from "./components/landing/AIComponentsSection";
 import TeamSection from "./components/landing/TheTeam";
+import TechStack from "./components/landing/TechStack";
 
 export default function LandingPage() {
   return (
@@ -13,6 +14,7 @@ export default function LandingPage() {
       <ProblemStatement />
       <SolutionSection />
       <AIComponentsSection />
+      <TechStack />
       <TeamSection />
       {/* Footer */}
       <footer className="w-full py-6 text-center bg-[#FFF3E0] text-neutral-800 ">
