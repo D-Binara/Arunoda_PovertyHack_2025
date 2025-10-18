@@ -197,7 +197,6 @@ export default function JobDetailPage() {
             {/* Job Info */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="flex items-center gap-2">
-                <DollarSign className="h-5 w-5 text-secondary" />
                 <div>
                   <p className="text-sm text-muted-foreground">Compensation</p>
                   <p className="font-semibold text-secondary">{job.pay}</p>

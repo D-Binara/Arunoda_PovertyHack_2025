@@ -74,7 +74,7 @@ export default function Login() {
           <div className="flex items-center justify-center mb-4">
             <img src="/boru1.png" alt="EmpowerLearn" className="h-16" />
           </div>
-          <CardTitle className="text-2xl text-center">Welcome to EmpowerLearn</CardTitle>
+          <CardTitle className="text-2xl text-center">Welcome to Arunoda</CardTitle>
           <CardDescription className="text-center">
             Empowering communities through learning and connection
           </CardDescription>

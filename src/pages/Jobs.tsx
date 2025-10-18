@@ -88,7 +88,7 @@ export default function JobsPage() {
         className="relative flex flex-col items-center justify-center text-center text-white py-20 px-4"
         style={{
           backgroundImage:
-            "linear-gradient(to bottom right, rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('/img/Learn/top.png')",
+            "linear-gradient(to bottom right, rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('/img/jobs/top.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -200,8 +200,8 @@ export default function JobsPage() {
                       </span>
                       {job.pay && (
                         <span className="flex items-center gap-1 font-medium text-[#F57C00]">
-                          <DollarSign className="h-4 w-4" />
-                          {job.pay}
+
+                         {job.pay}
                         </span>
                       )}
                     </div>
