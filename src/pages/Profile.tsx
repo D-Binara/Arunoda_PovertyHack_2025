@@ -242,11 +242,10 @@ export default function ProfilePage() {
           {/* Version info */}
           <div className="text-center text-xs text-muted-foreground">
             <p>Arunoda v1.0.0</p>
-            <p>Made with ❤️ for Rural Communities</p>
+            <p>Made with  for Rural Communities</p>
           </div>
         </div>
 
-        <BottomNav />
       </div>
   );
 }
