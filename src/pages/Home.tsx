@@ -112,19 +112,19 @@ export default function HomePage() {
         
         <div className="relative max-w-screen-lg mx-auto text-center space-y-6">
           <h1 className="text-4xl md:text-5xl font-bold">
-            {user ? `Welcome back, ${user.name}! 👋` : 'Welcome to EmpowerLearn! 🎓'}
+            {user ? `Welcome back, ${user.name}! ` : 'Welcome to EmpowerLearn! '}
           </h1>
           <p className="text-lg md:text-xl opacity-95 max-w-2xl mx-auto">
             Grow Your Skills, Share Your Story
           </p>
           {user && (
             <p className="text-sm opacity-80">
-              📍 {user.district} • {user.role === 'admin' ? '👑 Admin' : '👤 Member'}
+               {user.district} • {user.role === 'admin' ? ' Admin' : ' Member'}
             </p>
           )}
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <Link to="/learn">
+            {/* <Link to="/learn">
               <Button size="lg" variant="secondary" className="w-full sm:w-auto btn-success">
                 <Play className="h-5 w-5 mr-2" />
                 Start a Story
@@ -135,7 +135,7 @@ export default function HomePage() {
                 <TrendingUp className="h-5 w-5 mr-2" />
                 {t("showSkill")}
               </Button>
-            </Link>
+            </Link> */}
             <Button 
               size="lg" 
               variant="outline" 
@@ -151,7 +151,7 @@ export default function HomePage() {
 
       <div className="max-w-screen-lg mx-auto px-4 space-y-8 py-8">
         {/* Story of the Week */}
-        <h1 className="not-italic font-serif text-transparent text-black text-center  text-4xl md:text-5xl lg:text-6xl">
+        <h1 className="not-italic font-serif  text-black text-center  text-4xl md:text-5xl lg:text-6xl">
 Story of the Week
                 </h1>
         {/* <Card className="card-elevated"> */}
