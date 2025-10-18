@@ -25,7 +25,7 @@ const navItems = [
   { href: "/learn", icon: BookOpen, label: "Learn" },
   { href: "/jobs", icon: Briefcase, label: "Jobs" },
   { href: "/entrepreneurs", icon: Users, label: "Investors" },
-  { href: "/messages", icon: MessageCircle, label: "Messages" },
+
 ];
 
 function NavLinkItem({ href, label, Icon, active, onClick, className }: any) {
