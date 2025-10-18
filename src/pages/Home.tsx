@@ -38,7 +38,7 @@ export default function HomePage() {
         console.log('Playing daily tip audio...');
     };
 
-    const storyTitle = "Sunitha's Food Stall Success";
+    const storyTitle = "Arun's Legacy: Rebirth of Traditional Hand-Carved Masks";
     const storyText = `
     Sunitha, a small-town entrepreneur, started her food stall with just Rs. 5,000.
     Every morning, she prepared home-cooked meals with love and care, serving her neighbors and passersby.
@@ -172,7 +172,7 @@ export default function HomePage() {
                                 size="sm"
                                 variant="outline"
                                 onClick={() => navigate('/stories/sunitha')}
-                                className="w-full sm:w-auto border-[#F57C00]/40 text-[#F57C00] hover:bg-orange-50"
+                                className="w-full sm:w-auto border-[#F57C00]/40 text-[#F57C00] hover:bg-orange-50 hover:text-black"
                             >
                                 {t('viewStory')}
                             </Button>
