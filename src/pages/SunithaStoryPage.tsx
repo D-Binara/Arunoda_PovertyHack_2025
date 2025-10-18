@@ -181,7 +181,7 @@ const SunithaStoryPage = () => {
         variant="ghost"
         size="sm"
         onClick={() => navigate(-1)}
-        className="bg-white/80 backdrop-blur-md text-gray-700 hover:bg-white dark:bg-gray-700/70 dark:text-gray-200 rounded-full px-3 py-1 shadow-sm"
+        className="bg-white/80 backdrop-blur-md text-gray-700 hover:bg-gray dark:bg-gray-700/70 dark:text-gray-200 hover:text-black rounded-full px-3 py-1 shadow-sm"
       >
         ← Back to Artisan Stories
       </Button>

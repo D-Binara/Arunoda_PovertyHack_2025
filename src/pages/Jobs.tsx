@@ -200,8 +200,8 @@ export default function JobsPage() {
                       </span>
                       {job.pay && (
                         <span className="flex items-center gap-1 font-medium text-[#F57C00]">
-                          <DollarSign className="h-4 w-4" />
-                          {job.pay}
+
+                         {job.pay}
                         </span>
                       )}
                     </div>
