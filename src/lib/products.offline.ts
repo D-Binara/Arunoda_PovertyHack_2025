@@ -4,6 +4,24 @@ import { isReallyOnline } from './net';
 import { toast } from 'sonner';
 import { syncOutbox } from './db';
 
+export type Product = {
+    id: string;
+    userId: string;
+    category: string;
+    district: string;
+    status: 'active' | 'inactive';
+    syncStatus: 'synced' | 'pending' | 'failed';
+    title: string;
+    description?: string;
+    price?: number;
+    images: string[];
+
+    // make these optional if not always present
+    village?: string;
+    createdAt?: string; // ISO string
+};
+
+// 🧪 Dummy fallback for demo
 // 🧪 Dummy fallback for demo
 export const DUMMY_PRODUCTS: Product[] = [
     {
@@ -17,7 +35,8 @@ export const DUMMY_PRODUCTS: Product[] = [
         description: 'Beautiful clay work from local artisans.',
         price: 800,
         images: ['/img/placeholder-product.jpg'],
-    } as Product,
+        createdAt: new Date().toISOString(),
+    } satisfies Product,
     {
         id: 'dummy-2',
         userId: 'demo',
@@ -29,8 +48,10 @@ export const DUMMY_PRODUCTS: Product[] = [
         description: 'Fresh leaves from Uva hills.',
         price: 1500,
         images: ['/img/placeholder-product.jpg'],
-    } as Product,
+        createdAt: new Date().toISOString(),
+    } satisfies Product,
 ];
+
 
 // Map server → local (if server uses _id)
 export function mapServerProduct(p: any): Product {
