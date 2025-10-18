@@ -231,7 +231,7 @@ Story of the Week
           size="sm"
           variant="outline"
           onClick={() => navigate("/stories/sunitha")}
-          className="w-full sm:w-auto border-[#F57C00]/40 text-[#F57C00] hover:bg-orange-50"
+          className="w-full sm:w-auto border-[#F57C00]/40 text-[#F57C00] hover:text-[#312921] hover:bg-orange-50"
         >
           View Story
         </Button>

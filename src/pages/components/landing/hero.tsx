@@ -3,9 +3,9 @@ import { Play, TrendingUp } from "lucide-react";
 
 const Hero = ({ user }) => {
   const images = [
-    { src: "/img/Home/hero1.jpg", alt: "Entrepreneur 1" },
-    { src: "/img/Home/hero2.jpg", alt: "Entrepreneur 2" },
-    { src: "/img/Home/hero1.jpg", alt: "Entrepreneur 3" },
+    { src: "/img/Home/g1.png", alt: "Entrepreneur 1" },
+    { src: "/img/Home/g2.png", alt: "Entrepreneur 2" },
+    { src: "/img/Home/g3.png", alt: "Entrepreneur 3" },
   ];
 
   return (
